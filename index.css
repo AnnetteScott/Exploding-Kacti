@@ -33,10 +33,9 @@ game_background{
   background-size: 905px;
 }
 
-water_meter{
+water_meter, health_bar{
   position: absolute;
-  top: 10px;
-  right: 15px;
+  z-index: 10;
   display: flex;
   flex-direction: column;
   justify-content: flex-end;
@@ -45,17 +44,39 @@ water_meter{
   height: 80px;
   border: 4px solid grey;
   border-radius: 3px;
-  overflow: hidden;
 }
-water_meter div{
+health_bar{
+  top: 10px;
+  right: 15px;
+}
+water_meter{
+  top: 140px;
+  right: 15px;
+}
+water_meter div, health_bar div{
   position: relative;
   width: 100%;
-  height: 60%;
+  height: 0%;
+}
+water_meter div{
   background-color: #0051ff;
 }
-
-score{
+health_bar div{
+  background-color: #ff0000;
+}
+water_meter p, health_bar p{
   position: absolute;
+  bottom: -50px;
+  width: 100%;
+  color: grey;
+  font-size: 20px;
+  font-family: monospace;
+  text-align: center;
+}
+
+score, level{
+  position: absolute;
+  z-index: 10;
   top: 10px;
   right: 60px;
   display: flex;
@@ -69,15 +90,24 @@ score{
   user-select: none;
   pointer-events: none;
 }
-score p{
+level{
+  right: unset;
+  left: 15px;
+  width: 15ch;
+}
+score p, level p{
+  width: 100%;
   margin: unset;
   color: grey;
   font-size: inherit;
   font-family: monospace;
   text-align: right;
 }
+level p{
+  text-align: left;
+}
 
-.cactus{
+.normal_cactus, .left_cactus, .right_cactus, .fire_cactus, .dead_cactus, .blob_cactus, .tumbleweed{
   position: absolute;
   z-index: 2;
   top: -50px;
@@ -85,10 +115,31 @@ score p{
   display: block;
   width: 64px;
   height: 64px;
-  background-image: url('Images/sprites/cacti.png');
   background-repeat: no-repeat;
   background-position: center;
   background-size: 100%;
+  user-select: none;
+}
+.normal_cactus{
+  background-image: url('Images/sprites/normal_cacti.png');
+}
+.left_cactus{
+  background-image: url('Images/sprites/left_cacti.png');
+}
+.right_cactus{
+  background-image: url('Images/sprites/right_cacti.png');
+}
+.fire_cactus{
+  background-image: url('Images/sprites/flaming_cacti.png');
+}
+.dead_cactus{
+  background-image: url('Images/sprites/dead_cacti.png');
+}
+.blob_cactus{
+  background-image: url('Images/sprites/blob_cacti.png');
+}
+.tumbleweed{
+  background-image: url('Images/sprites/weed.png');
 }
 
 .pond{
@@ -103,6 +154,7 @@ score p{
   background-repeat: no-repeat;
   background-position: center;
   background-size: 100%;
+  user-select: none;
 }
 
 

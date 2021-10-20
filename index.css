@@ -17,6 +17,7 @@ game{
   left: 0px;
   display: block;
   background-color: white;
+  overflow: hidden;
 }
 
 game_background{
@@ -51,6 +52,29 @@ water_meter div{
   width: 100%;
   height: 60%;
   background-color: #0051ff;
+}
+
+score{
+  position: absolute;
+  top: 10px;
+  right: 60px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  align-items: center;
+  width: 5ch;
+  height: 1em;
+  font-size: 40px;
+  border-radius: 3px;
+  user-select: none;
+  pointer-events: none;
+}
+score p{
+  margin: unset;
+  color: grey;
+  font-size: inherit;
+  font-family: monospace;
+  text-align: right;
 }
 
 .cactus{

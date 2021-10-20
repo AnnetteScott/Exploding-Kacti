@@ -1,9 +1,35 @@
 var game_elem = document.querySelector("game");
 var game_width = game_elem.offsetWidth;
 var game_height = game_elem.offsetHeight;
+
+var score_elem = document.querySelector("score p");
+
 var cactus_ids = [];
 
-function game_main(){
+function gameMain(){
+
+  spawnPond();
+
+  window.setInterval(function(){spawnCactus()}, 1000);
+}
+gameMain();
+
+
+function score(modifier){
+  var score = parseInt(score_elem.innerHTML);
+  score += modifier;
+  score = zeropad(score, 4);
+  score_elem.innerHTML = score;
+}
+
+function zeropad(str, len){
+  str = str.toString();
+  var pad = "";
+  for(var i = 0; i < (len - str.length); i++){
+    pad = pad + "0";
+  }
+  console.log(pad);
+  return pad + str;
 }
 
 
@@ -24,6 +50,7 @@ function spawnCactus(){
   var cactus = document.createElement("div");
   cactus.classList.add("cactus");
   cactus.id = id;
+  cactus.setAttribute('onclick', "explode(event)");
   cactus.style.left = pos.x + "px";
   cactus.style.top = pos.y + "px";
   document.querySelector("game").appendChild(cactus);
@@ -43,6 +70,7 @@ function explode(event){
   var pos = {clientX: x, clientY: y};
   event.target.remove();
   createEmitter(pos);
+  score(1);
 }
 
 function generateID(){

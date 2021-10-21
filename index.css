@@ -157,7 +157,21 @@ level p{
   user-select: none;
 }
 
-
+aim_trace{
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  display: block;
+  width: 0px;
+  height: 3px;
+  border: 4px dashed grey;
+  box-sizing: border-box;
+  transform: rotate(0deg);
+  transform-origin: 0% 0%;
+  clip-path: polygon(0% 0px, 100% 0px, 100% 2px, 0% 2px);
+  user-select: none;
+  pointer-events: none;
+}
 
 
 

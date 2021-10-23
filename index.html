@@ -11,11 +11,14 @@
   <body>
     <game onmousemove="updateCursorPosition(event)" onclick="handleClickEvent(event)">
       <game_background></game_background>
-      <level><p>Level 1</p></level>
-      <health_bar><div style="height:100%;"></div><p>100%</p></health_bar>
-      <water_meter><div style="height:0%;"></div><p>0%</p></water_meter>
-      <score><p>0000</p></score>
+      <user_interface>
+        <level><p></p></level>
+        <health_bar><div style="height:100%;"></div><p>100%</p></health_bar>
+        <water_meter><div style="height:0%;"></div><p>0%</p></water_meter>
+        <score><p>0000</p></score>
+      </user_interface>
       <aim_trace></aim_trace>
+      <crosshair></crosshair>
 
     </game>
     <div id="particle_container"></div>

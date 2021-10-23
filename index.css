@@ -33,6 +33,10 @@ game_background{
   background-size: 905px;
 }
 
+user_interface{
+  
+}
+
 water_meter, health_bar{
   position: absolute;
   z-index: 10;
@@ -73,7 +77,6 @@ water_meter p, health_bar p{
   font-family: monospace;
   text-align: center;
 }
-
 score, level{
   position: absolute;
   z-index: 10;
@@ -164,13 +167,27 @@ aim_trace{
   display: block;
   width: 0px;
   height: 3px;
-  border: 4px dashed grey;
+  border: 4px dashed cornflowerblue;
   box-sizing: border-box;
   transform: rotate(0deg);
   transform-origin: 0% 0%;
   clip-path: polygon(0% 0px, 100% 0px, 100% 2px, 0% 2px);
   user-select: none;
   pointer-events: none;
+}
+crosshair{
+  position: absolute;
+  z-index: 2;
+  top: -50px;
+  left: -50px;
+  display: block;
+  width: 16px;
+  height: 16px;
+  background-image: url('Images/crosshair.png');
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: 100%;
+  user-select: none;
 }
 
 

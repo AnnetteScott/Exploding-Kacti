@@ -121,3 +121,22 @@ function moveObject(){
     aliceTiming
   )
 }
+
+
+function updateCursorPosition(e){
+  cursor_position.x = e.clientX;
+  cursor_position.y = e.clientY;
+  aimTrace();
+  crosshair();
+}
+
+function aimTrace(){
+  var pos = {x: (cursor_position.x - center_of_game.x + 1), y: (cursor_position.y - center_of_game.y - 1)}
+  aim_trace_elem.style.width = getLinearDistance(center_of_game, cursor_position) + "px";
+  aim_trace_elem.style.transform = "rotate(" + radToDeg(Math.atan2(pos.y, pos.x)) + "deg)";
+}
+
+function crosshair(){
+  crosshair_elem.style.left = cursor_position.x - 8 + "px";
+  crosshair_elem.style.top = cursor_position.y - 8 + "px";
+}

@@ -71,6 +71,22 @@ function changeHealth(modifier){
 function getLinearDistance(p1, p2){
   return Math.sqrt(((p2.x - p1.x) * (p2.x - p1.x)) + ((p2.y - p1.y) * (p2.y - p1.y)));
 }
+function cartesianToPolar(p1, p2){
+  var output = [];
+  var rad = degToRad(angle);
+  output[0] += length * Math.cos(rad);
+  output[1] += length * Math.sin(rad);
+  return output;
+}
+
+
+function degToRad(deg){
+  return deg * (Math.PI / 180);
+}
+
+
+function radToDeg(rad){
+  return rad * (180 / Math.PI);
 }
 
 function generateID(){

@@ -7,6 +7,7 @@ function zeropad(str, len){
   return pad + str;
 }
 
+
 function spawnChance(obj_arr){
   var output;
   var chance_total = 0;
@@ -29,11 +30,13 @@ function spawnChance(obj_arr){
   return output;
 }
 
+
 function jump(e){
   var elem = e.target;
   elem.classList.add("a_jump");
   elem.addEventListener("animationend", function(){elem.classList.remove("a_jump")});
 }
+
 
 function changeScore(modifier){
   var score = parseInt(score_elem.innerHTML);
@@ -41,6 +44,7 @@ function changeScore(modifier){
   score = zeropad(score, 4);
   score_elem.innerHTML = score;
 }
+
 
 function changeWater(modifier){
   var current_amount = parseInt(water_meter_elem.style.height.split("%")[0]);
@@ -55,6 +59,7 @@ function changeWater(modifier){
   water_meter_text_elem.innerHTML = current_amount + "%";
 }
 
+
 function changeHealth(modifier){
   var current_amount = parseInt(health_bar_elem.style.height.split("%")[0]);
   if(current_amount + modifier < 0){
@@ -68,9 +73,12 @@ function changeHealth(modifier){
   health_bar_text_elem.innerHTML = current_amount + "%";
 }
 
+
 function getLinearDistance(p1, p2){
   return Math.sqrt(((p2.x - p1.x) * (p2.x - p1.x)) + ((p2.y - p1.y) * (p2.y - p1.y)));
 }
+
+
 function cartesianToPolar(p1, p2){
   var output = [];
   var rad = degToRad(angle);
@@ -89,12 +97,14 @@ function radToDeg(rad){
   return rad * (180 / Math.PI);
 }
 
+
 function generateID(){
   const chars = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"];
   var id = "";
   for(var i = 0; i < 10; i++){id += chars[parseInt(Math.random() * chars.length)];}
   return id;
 }
+
 
 function moveObject(){
   document.getElementById("tunnel").animate([

@@ -55,6 +55,19 @@ function changeWater(modifier){
   water_meter_text_elem.innerHTML = current_amount + "%";
 }
 
+function changeHealth(modifier){
+  var current_amount = parseInt(health_bar_elem.style.height.split("%")[0]);
+  if(current_amount + modifier < 0){
+    current_amount = 0;
+  }else if(current_amount + modifier > 100){
+    current_amount = 100;
+  }else{
+    current_amount = current_amount + modifier;
+  }
+  health_bar_elem.style.height = current_amount + "%";
+  health_bar_text_elem.innerHTML = current_amount + "%";
+}
+
 function getLinearDistance(p1, p2){
   return Math.sqrt(((p2.x - p1.x) * (p2.x - p1.x)) + ((p2.y - p1.y) * (p2.y - p1.y)));
 }

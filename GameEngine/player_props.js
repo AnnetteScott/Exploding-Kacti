@@ -1,15 +1,17 @@
 var player = {
   health: 100
-}
+};
 
-var pond_hit_distance = 40;
-
-var heart_min_spawn_distance = 400;
+var pond_item = {
+  'pond_hit_distance': 40,
+  'pond_health': 10
+};
 
 var heart_item = {
   'health_regen': 10,
-  'spawn_chance': 20
-}
+  'spawn_chance': 20,
+  'heart_min_spawn_distance': 400
+};
 
 
 var difficulty = [
@@ -19,4 +21,4 @@ var difficulty = [
   {'level': 'L4', 'maxCacti': 25, 'scoreThreshold': 150},
   {'level': 'L5', 'maxCacti': 30, 'scoreThreshold': 200},
   {'level': 'L6', 'maxCacti': 35, 'scoreThreshold': 250}
-]
+];

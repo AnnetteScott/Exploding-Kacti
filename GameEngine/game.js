@@ -32,7 +32,6 @@ gameMain();
 
 
 
-
 /*===========Main Game Functions==========*/
 
 function spawnPond(){
@@ -84,18 +83,13 @@ function explode(pos, color){
 
 
 function shoot(elem){
-  if(checkAmmo() > 0){
+  var cacti_type = elem.classList.value;
+  if(checkAmmo() >= cacti_types[cacti_type]['health']){
     var pos = {x: elem.offsetLeft + (elem.offsetWidth / 2), y: elem.offsetTop + (elem.offsetHeight / 2)};
-    var color = '034206';
-    var score = 0;
-    var water_used = 0;
-    for(var i = 0; i < cacti_types.length; i++){
-      if(cacti_types[i].type == elem.classList.value){
-        color = cacti_types[i].color;
-        score = cacti_types[i].points;
-        water_used = cacti_types[i].health;
-      }
-    }
+    var color = cacti_types[cacti_type]['color'];
+    var score = cacti_types[cacti_type]['points'];
+    var water_used = cacti_types[cacti_type]['health'];
+
     const index = all_cacti.indexOf(elem.id);
     if (index > -1) {
       all_cacti.splice(index, 1);

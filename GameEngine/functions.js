@@ -176,7 +176,7 @@ function spawnHitText(pos, color, size, string){
 
 
 function checkPondCollision(cactus_id){
-  if(getLinearDistance(center_of_game, all_cacti[cactus_id]['position']) <= pond_hit_distance){
+  if(getLinearDistance(center_of_game, all_cacti[cactus_id]['position']) <= pond_item['pond_hit_distance']){
     return true;
   }else{
     return false;
@@ -191,7 +191,8 @@ function pondDamage(pond_health){
     "pond6",
     "pond8",
     "pond10"
-  ]
-  pond_level = parseInt(pond_health/2)
-  pond_elem.style.backgroundImage("Images/ponds/" + pond_images[pond_level] + ".png");
+  ];
+  pond_level = parseInt(pond_health/2);
+  document.querySelector("pond").style.backgroundImage = "Images/ponds/" + pond_images[pond_level] + ".png";
+  return pond_images[pond_level]
 }

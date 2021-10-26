@@ -56,7 +56,27 @@ hittext{
   pointer-events: none;
 }
 hittext p{
-
+  position: absolute;
+  top: -50px;
+  left: -50px;
+  display: block;
+  width: 64px;
+  height: 64px;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: 100%;
+  user-select: none;
+  pointer-events: all;
+}
+@keyframes hittext_animation{
+  0%   {
+    opacity: 1;
+    transform: translateY(0px);
+  }
+  100% {
+    opacity: 0;
+    transform: translateY(-12px);
+  }
 }
 
 user_interface{
@@ -140,11 +160,7 @@ level p{
 }
 
 cactus{
-  pointer-events: all;
-}
-.normal_cactus, .left_cactus, .right_cactus, .fire_cactus, .dead_cactus, .blob_cactus, .tumbleweed{
   position: absolute;
-  z-index: 2;
   top: -50px;
   left: -50px;
   display: block;
@@ -154,6 +170,7 @@ cactus{
   background-position: center;
   background-size: 100%;
   user-select: none;
+  pointer-events: all;
 }
 .normal_cactus{
   background-image: url('Images/sprites/normal_cacti.png');

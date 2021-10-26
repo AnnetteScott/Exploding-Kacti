@@ -28,6 +28,7 @@ function gameMain(){
 
   window.setInterval(function(){spawnCactus(spawnChance(cacti_types))}, 1000);
 }
+gameMain();
 
 
 
@@ -113,7 +114,7 @@ function handleClickEvent(e){
   if(elem.tagName == "GAME_BACKGROUND"){
     var x = elem.offsetLeft + (elem.offsetWidth / 2);
     var y = elem.offsetTop + (elem.offsetHeight / 2);
-  }else if(elem.tagName == "cactus"){
+  }else if(elem.tagName == "CACTUS"){
     shoot(elem);
   }
 }

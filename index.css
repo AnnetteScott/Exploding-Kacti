@@ -6,6 +6,7 @@
   image-rendering: pixelated;                 /* Chrome                         */
   image-rendering: optimize-contrast;         /* CSS3 Proposed                  */
   -ms-interpolation-mode: nearest-neighbor;   /* IE8+                           */
+  user-select: none;
 }
 
 game{
@@ -31,6 +32,31 @@ game_background{
   background-color: #e5cb5c;
   background-image: url('Images/sand_background.png');
   background-size: 905px;
+}
+
+cacti{
+  position: absolute;
+  z-index: 2;
+  top: 0px;
+  right: 0px;
+  bottom: 0px;
+  left: 0px;
+  user-select: none;
+  pointer-events: none;
+}
+
+hittext{
+  position: absolute;
+  z-index: 3;
+  top: 0px;
+  right: 0px;
+  bottom: 0px;
+  left: 0px;
+  user-select: none;
+  pointer-events: none;
+}
+hittext p{
+
 }
 
 user_interface{
@@ -77,6 +103,7 @@ water_meter p, health_bar p{
   font-size: 20px;
   font-family: monospace;
   text-align: center;
+  user-select: none;
 }
 score, level{
   position: absolute;
@@ -106,11 +133,15 @@ score p, level p{
   font-size: inherit;
   font-family: monospace;
   text-align: right;
+  user-select: none;
 }
 level p{
   text-align: left;
 }
 
+cactus{
+  pointer-events: all;
+}
 .normal_cactus, .left_cactus, .right_cactus, .fire_cactus, .dead_cactus, .blob_cactus, .tumbleweed{
   position: absolute;
   z-index: 2;
@@ -148,7 +179,7 @@ level p{
 
 .pond{
   position: absolute;
-  z-index: 2;
+  z-index: 1;
   top: -100px;
   left: -100px;
   display: block;

@@ -134,14 +134,18 @@ function shoot(elem){
   if(checkAmmo() > 0){
     if(cactus_obj['remaining_health'] > 10){
       cactus_obj['remaining_health'] -= 10;
-      explode(cactus_obj['position'], '0000ff');
+      spawnHitText({x: cactus_obj['position'].x - 14, y: cactus_obj['position'].y - 64}, 'FF0000', 18, "-10");
+      explode(cactus_obj['position'], '0000FF');
     } else{
       delete all_cacti[cacti_id];
       elem.remove();
+      spawnHitText({x: cactus_obj['position'].x - 14, y: cactus_obj['position'].y - 64}, 'FF0000', 18, "-10");
       explode(cactus_obj['position'], cacti_types[cacti_type]['color']);
       changeScore(cacti_types[cacti_type]['points']);
     }
     changeWater(-10);
+  }else{
+    spawnHitText({x: center_of_game.x - 85, y: center_of_game.y - 100}, '808080', 26, "OUT&nbsp;OF&nbsp;WATER");
   }
 }
 

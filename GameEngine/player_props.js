@@ -12,9 +12,9 @@ var heart_item = {
 
 var difficulty = [
   {'level': 'L1', 'maxCacti': 10, 'scoreThreshold': 10},
-  {'level': 'L2', 'maxCacti': 20, 'scoreThreshold': 20},
-  {'level': 'L3', 'maxCacti': 30, 'scoreThreshold': 30},
-  {'level': 'L4', 'maxCacti': 40, 'scoreThreshold': 40},
-  {'level': 'L5', 'maxCacti': 50, 'scoreThreshold': 50},
-  {'level': 'L6', 'maxCacti': 60, 'scoreThreshold': 60}
+  {'level': 'L2', 'maxCacti': 15, 'scoreThreshold': 50},
+  {'level': 'L3', 'maxCacti': 20, 'scoreThreshold': 100},
+  {'level': 'L4', 'maxCacti': 25, 'scoreThreshold': 150},
+  {'level': 'L5', 'maxCacti': 30, 'scoreThreshold': 200},
+  {'level': 'L6', 'maxCacti': 35, 'scoreThreshold': 250}
 ]

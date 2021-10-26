@@ -13,49 +13,49 @@ var cacti_types = [
   {
     type: "normal_cactus",
     spawn_chance: 60,
-    health: 1,
+    health: 10,
     points: 1,
     color: "034206"
   },
   {
     type: "left_cactus",
     spawn_chance: 15,
-    health: 1,
+    health: 10,
     points: 2,
     color: "034206"
   },
   {
     type: "right_cactus",
     spawn_chance: 15,
-    health: 1,
+    health: 10,
     points: 2,
     color: "034206"
   },
   {
     type: "blob_cactus",
     spawn_chance: 10,
-    health: 2,
+    health: 20,
     points: 3,
     color: "034206"
   },
   {
     type: "dead_cactus",
     spawn_chance: 8,
-    health: 1,
+    health: 10,
     points: 4,
     color: "7A3400"
   },
   {
     type: "tumbleweed",
     spawn_chance: 5,
-    health: 2,
+    health: 20,
     points: 4,
     color: "A04400"
   },
   {
     type: "fire_cactus",
     spawn_chance: 2,
-    health: 3,
+    health: 40,
     points: 5,
     color: "FE9300"
   }

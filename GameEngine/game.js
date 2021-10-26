@@ -182,6 +182,7 @@ function gameOver(){
     document.querySelectorAll('cactus').forEach((elem) => {
       elem.classList.add("a_cactus_celebration");
     });
+    spawnHitText({x: center_of_game.x - 125, y: center_of_game.y - 100}, '202020', 36, "GAME&nbsp;OVER");
   }
 
 }

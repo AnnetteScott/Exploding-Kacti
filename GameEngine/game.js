@@ -83,7 +83,7 @@ function spawnHearts(){
   heart.style.left = pos.x - 32 + "px";
   heart.style.top = pos.y - 32 + "px";
 
-  document.querySelector("game").appendChild(heart);
+  document.querySelector("hearts").appendChild(heart);
 }
 
 

@@ -173,3 +173,20 @@ function spawnHitText(pos, color, size, string){
   hittext_elem.style.top = pos.y + "px";
   document.querySelector("hittext").appendChild(hittext_elem);
 }
+
+
+function cactusAttack(){
+
+}
+
+
+function pondDamage(pond_health){
+  const pond_images = [
+    "pond10",
+    "pond8",
+    "pond6",
+    "pond4",
+    "pond2"
+  ]
+  pond_elem.style.backgroundImage("Images/ponds/" + pond_images[some_number] + ".png");
+}

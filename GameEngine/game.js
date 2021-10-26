@@ -18,6 +18,8 @@ var crosshair_elem = document.querySelector("crosshair");
 crosshair_elem.style.left = center_of_game.x + "px";
 crosshair_elem.style.top = center_of_game.y + "px";
 
+var pond_elem;
+
 
 
 /*==============Main Game Loop============*/
@@ -45,6 +47,7 @@ function spawnPond(){
   pond.style.top = pos.y + "px";
   pond.setAttribute('onclick', "changeWater(50)");
   document.querySelector("game").appendChild(pond);
+  pond_elem = pond;
 }
 
 

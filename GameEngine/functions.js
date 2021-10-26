@@ -138,5 +138,11 @@ function getPosAlongHypo(pos1, pos2, x){
 
 
 function hitText(pos, color, size, string){
-  
+  var hittext = document.createElement("P");
+  hittext.innerHTML = string;
+  hittext.style.color = (color.includes("#") ? color : "#" + color);
+  hittext.style.fontSize = size + "px";
+  hittext.style.left = pos.x;
+  hittext.style.top = pos.y;
+  document.querySelector("hittext").appendChild(hittext);
 }

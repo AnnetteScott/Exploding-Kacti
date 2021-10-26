@@ -12,6 +12,7 @@ function spawnChance(obj){
   var obj_arr = Object.keys(obj);
   var output;
   var chance_total = 0;
+  //Gets total Chance
   for(var i = 0; i < obj_arr.length; i++){
     chance_total += obj[obj_arr[i]].spawn_chance;
   }
@@ -21,7 +22,7 @@ function spawnChance(obj){
   var prevoius_chance = 0;
   while(i < obj_arr.length){
     if(prevoius_chance < rand && rand < (prevoius_chance + obj[obj_arr[i]].spawn_chance)){
-      output = obj[obj_arr[i]].type;
+      output = obj_arr[i];
       i = obj_arr.length + 1;
     }else{
       prevoius_chance += obj[obj_arr[i]].spawn_chance;

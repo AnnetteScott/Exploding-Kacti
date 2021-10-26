@@ -51,11 +51,11 @@ hittext p{
   display: block;
   width: 64px;
   height: 64px;
-  background-repeat: no-repeat;
-  background-position: center;
-  background-size: 100%;
+  font-family: monospace;
+  font-weight: bold;
+  animation: hittext_animation 0.7s linear forwards;
   user-select: none;
-  pointer-events: all;
+  pointer-events: none;
 }
 @keyframes hittext_animation{
   0%   {
@@ -64,7 +64,7 @@ hittext p{
   }
   100% {
     opacity: 0;
-    transform: translateY(-12px);
+    transform: translateY(-22px);
   }
 }
 

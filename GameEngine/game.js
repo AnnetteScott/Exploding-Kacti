@@ -49,7 +49,7 @@ function spawnPond(){
 
 
 function spawnCactus(type = "normal_cactus"){
-  if(all_cacti.length < max_num_of_cacti){
+  if(Object.keys(all_cacti).length < max_num_of_cacti){
     var pos = {x: center_of_game.x, y: center_of_game.y};
     while(getLinearDistance(pos, center_of_game) < cacti_max_spawn_distance){
       pos = {x: (Math.random() * game_width), y: (Math.random() * game_height)};

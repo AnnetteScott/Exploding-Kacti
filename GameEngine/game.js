@@ -114,6 +114,7 @@ function shoot(pos){
       if(cacti_types[i].type == type){
         color = cacti_types[i].color;
         score = cacti_types[i].points;
+        changeWater(0 - cacti_types[i].health);
       }
     }
     changeColour(color);
@@ -124,7 +125,7 @@ function shoot(pos){
     }
     createEmitter(pos);
     changeScore(score);
-    changeWater(-10);
+
   }
 }
 

@@ -1,13 +1,15 @@
-function cactus_constructor(id,creation_tick,start,end,speed,lifespan,velocity){
-  this.id = id,
-  this.creation_tick = creation_tick,
-  this.start = start,
-  this.age = 0;
-  this.end = end,
-  this.speed = speed,
-  this.lifespan = lifespan,
-  this.velocity = velocity
-}
+// function cactus_constructor(id,creation_tick,start,end,speed,lifespan,velocity){
+//   this.id = id,
+//   this.creation_tick = creation_tick,
+//   this.start = start,
+//   this.age = 0;
+//   this.end = end,
+//   this.speed = speed,
+//   this.lifespan = lifespan,
+//   this.velocity = velocity
+// }
+
+var cacti_movement_speed = 1;
 var cacti_max_spawn_distance = 400;
 var cacti_types = {
   "normal_cactus": {

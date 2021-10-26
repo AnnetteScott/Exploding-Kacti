@@ -171,7 +171,7 @@ function handleClickEvent(e){
     shoot(elem);
   }else if(elem.tagName == "HEART"){
     explode({x: e.clientX, y: e.clientY}, 'ff0000');
-    spawnHitText({x: e.clientX - 14, y: e.clientY - 32}, 'FF0000', 20, "+10");
+    spawnHitText({x: center_of_game.x - 14, y: center_of_game.y - 100}, 'FF0000', 20, "+10");
     elem.remove();
     changeHealth(heart_item['health_regen'])
   }

@@ -27,7 +27,7 @@ function gameMain(){
   spawnPond();
 
   window.setInterval(function(){spawnCactus(spawnChance(cacti_types))}, 1000);
-  window.setInterval(function(){moveAllCacti()}, 100);
+  window.setInterval(function(){moveAllCacti()}, 50);
 }
 gameMain();
 
@@ -68,7 +68,7 @@ function spawnCactus(type = "normal_cactus"){
     cactus.classList.add(type);
     cactus.style.left = pos.x - 32 + "px";
     cactus.style.top = pos.y - 32 + "px";
-    document.querySelector("game").appendChild(cactus);
+    document.querySelector("cacti").appendChild(cactus);
 
     all_cacti[id] = new_cactus_object;
   }

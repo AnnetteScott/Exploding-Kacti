@@ -8,22 +8,24 @@ function zeropad(str, len){
 }
 
 
-function spawnChance(obj_arr){
+function spawnChance(obj){
+  var obj_arr = Object.keys(obj);
   var output;
   var chance_total = 0;
+  //Gets total Chance
   for(var i = 0; i < obj_arr.length; i++){
-    chance_total += obj_arr[i].spawn_chance;
+    chance_total += obj[obj_arr[i]].spawn_chance;
   }
   var rand = Math.random() * chance_total;
 
   var i = 0;
   var prevoius_chance = 0;
   while(i < obj_arr.length){
-    if(prevoius_chance < rand && rand < (prevoius_chance + obj_arr[i].spawn_chance)){
-      output = obj_arr[i].type;
+    if(prevoius_chance < rand && rand < (prevoius_chance + obj[obj_arr[i]].spawn_chance)){
+      output = obj_arr[i];
       i = obj_arr.length + 1;
     }else{
-      prevoius_chance += obj_arr[i].spawn_chance;
+      prevoius_chance += obj[obj_arr[i]].spawn_chance;
     }
     i++;
   }
@@ -105,34 +107,6 @@ function generateID(){
   return id;
 }
 
-
-function moveObject(){
-  document.getElementById("tunnel").animate([
-    { transform: 'translate3D(0, 0, 0)' }, 
-    { transform: 'translate3D(0, -300px, 0)' }
-  ], {
-    duration: 1000,
-    iterations: Infinity
-  })
-
-  var aliceTumbling = [
-    { transform: 'rotate(0) translate3D(-50%, -50%, 0', color: '#000' }, 
-    { color: '#431236', offset: 0.3},
-    { transform: 'rotate(360deg) translate3D(-50%, -50%, 0)', color: '#000' }
-  ];
-
-  var aliceTiming = {
-    duration: 3000,
-    iterations: Infinity
-  }
-
-  document.getElementById("alice").animate(
-    aliceTumbling, 
-    aliceTiming
-  )
-}
-
-
 function updateCursorPosition(e){
   cursor_position.x = e.clientX;
   cursor_position.y = e.clientY;
@@ -149,4 +123,15 @@ function aimTrace(){
 function crosshair(){
   crosshair_elem.style.left = cursor_position.x - 8 + "px";
   crosshair_elem.style.top = cursor_position.y - 8 + "px";
+}
+
+
+function getPosAlongHypo(pos1, pos2, x){
+  var a = pos1.x;
+  var b = pos1.y;
+  var c = pos2.x;
+  var d = pos2.y;
+
+  var y = (((d-b)/(c-a)) * x) + (((b * c) - (a * d))/(c - a));
+  return y; 
 }

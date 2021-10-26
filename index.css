@@ -34,7 +34,8 @@ game_background{
 }
 
 user_interface{
-  
+  user-select: none;
+  pointer-events: none;
 }
 
 water_meter, health_bar{
@@ -188,6 +189,7 @@ crosshair{
   background-position: center;
   background-size: 100%;
   user-select: none;
+  pointer-events: none;
 }
 
 

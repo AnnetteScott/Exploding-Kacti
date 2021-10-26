@@ -21,15 +21,15 @@ crosshair_elem.style.top = center_of_game.y + "px";
 
 
 /*==============Main Game Loop============*/
-
+let game_params = {};
 function gameMain(){
 
   spawnPond();
 
   window.setInterval(function(){spawnCactus(spawnChance(cacti_types))}, 1000);
+  window.setInterval(function(){moveAllCacti()}, 100);
 }
 gameMain();
-
 
 
 
@@ -49,21 +49,52 @@ function spawnPond(){
 
 
 function spawnCactus(type = "normal_cactus"){
-  if(all_cacti.length < max_num_of_cacti){
+  if(Object.keys(all_cacti).length < max_num_of_cacti){
     var pos = {x: center_of_game.x, y: center_of_game.y};
     while(getLinearDistance(pos, center_of_game) < cacti_max_spawn_distance){
       pos = {x: (Math.random() * game_width), y: (Math.random() * game_height)};
     }
-    var id = generateID();
+
     var cactus = document.createElement("cactus");
-    cactus.classList.add(type);
+    var id = generateID();
+    var new_cactus_object = {
+      'dom_element': cactus,
+      'id': id,
+      'type': type,
+      'position': {x: pos.x, y: pos.y},
+      'remaining_health': cacti_types[type]['health']
+    };
     cactus.id = id;
-    //cactus.setAttribute('onclick', "explode(event)");
+    cactus.classList.add(type);
     cactus.style.left = pos.x - 32 + "px";
     cactus.style.top = pos.y - 32 + "px";
     document.querySelector("game").appendChild(cactus);
-    all_cacti.push(id);
+
+    all_cacti[id] = new_cactus_object;
   }
+}
+
+
+function moveAllCacti(){
+  Object.keys(all_cacti).forEach((k) => {
+    var obj = all_cacti[k];
+    var elem = document.getElementById(obj.id);
+    var current_pos = obj['position'];
+    var new_x = 0;
+    if(current_pos.x < center_of_game.x){
+      new_x = current_pos.x + cacti_movement_speed;
+    } else {
+      new_x = current_pos.x - cacti_movement_speed;
+    }
+  
+    var new_y = getPosAlongHypo(current_pos, center_of_game, new_x);
+
+    var new_pos = {x: new_x, y: new_y};
+
+    all_cacti[k]['position'] = new_pos;
+    elem.style.left = new_pos.x - 32 + "px";
+    elem.style.top = new_pos.y - 32 + "px";
+  });
 }
 
 
@@ -71,72 +102,39 @@ function checkAmmo(){
   return parseInt(water_meter_elem.style.height.split("%")[0]);
 }
 
-function explode(event){
-  if(checkAmmo() > 0){
-    var elem = event.target;
-    var x = elem.offsetLeft + (elem.offsetWidth / 2);
-    var y = elem.offsetTop + (elem.offsetHeight / 2);
-    var pos = {clientX: x, clientY: y};
-    var id = elem.id;
-    var type = elem.classList.value;
-    var color = '034206';
-    var score = 0;
-    for(var i = 0; i < cacti_types.length; i++){
-      if(cacti_types[i].type == type){
-        color = cacti_types[i].color;
-        score = cacti_types[i].points;
-      }
-    }
-    changeColour(color);
-    elem.remove();
-    const index = all_cacti.indexOf(id);
-    if (index > -1) {
-      all_cacti.splice(index, 1);
-    }
-    createEmitter(pos);
-    changeScore(score);
-    changeWater(-10);
-  }
+
+function explode(pos, color){
+  changeColour(color);
+  createEmitter({clientX: pos.x, clientY: pos.y});
 }
 
 
-function shoot(pos){
-  var hit = checkHit(pos);
+function shoot(elem){
+  var cacti_type = elem.classList.value;
+  var cacti_id = elem.id;
+  var cactus_obj = all_cacti[cacti_id];
   if(checkAmmo() > 0){
-    var pos = {clientX: x, clientY: y};
-    var id = elem.id;
-    var type = elem.classList.value;
-    var color = '034206';
-    var score = 0;
-    for(var i = 0; i < cacti_types.length; i++){
-      if(cacti_types[i].type == type){
-        color = cacti_types[i].color;
-        score = cacti_types[i].points;
-      }
+    if(cactus_obj['remaining_health'] > 10){
+      cactus_obj['remaining_health'] -= 10;
+      explode(cactus_obj['position'], '0000ff');
+    } else{
+      delete all_cacti[cacti_id];
+      elem.remove();
+      explode(cactus_obj['position'], cacti_types[cacti_type]['color']);
+      changeScore(cacti_types[cacti_type]['points']);
     }
-    changeColour(color);
-    elem.remove();
-    const index = all_cacti.indexOf(id);
-    if (index > -1) {
-      all_cacti.splice(index, 1);
-    }
-    createEmitter(pos);
-    changeScore(score);
     changeWater(-10);
   }
-}
-
-
-function checkHit(pos){
-  return 1;
 }
 
 
 function handleClickEvent(e){
   var elem = e.target;
   console.log(elem.tagName);
-  if(elem.tagName == "GAME_BACKGROUND"){
-    var x = elem.offsetLeft + (elem.offsetWidth / 2);
-    var y = elem.offsetTop + (elem.offsetHeight / 2);
+  if(elem.tagName == "GAME_BACKGROUND" && checkAmmo() > 0){
+    explode({x: e.clientX, y: e.clientY}, 'EAD997');
+    changeWater(-10);
+  }else if(elem.tagName == "CACTUS"){
+    shoot(elem);
   }
 }

@@ -257,8 +257,8 @@ heart{
   top: -50px;
   left: -50px;
   display: block;
-  width: 64px;
-  height: 64px;
+  width: 32px;
+  height: 32px;
   background-image: url('Images/heart.png');
   background-repeat: no-repeat;
   background-position: center;

@@ -4,12 +4,12 @@ var player = {
 
 var pond_item = {
   'pond_hit_distance': 40,
-  'pond_health': 10
+  'pond_health': 100
 };
 
 var heart_item = {
   'health_regen': 10,
-  'spawn_chance': 20,
+  'spawn_chance': 2,
   'heart_min_spawn_distance': 400
 };
 

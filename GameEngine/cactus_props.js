@@ -10,7 +10,9 @@
 // }
 
 var cacti_movement_speed = 2;
-var cacti_max_spawn_distance = 400;
+var cacti_min_spawn_distance = 400;
+var max_num_of_cacti = 11;
+var all_cacti = {};
 var cacti_types = {
   "normal_cactus": {
     spawn_chance: 60,
@@ -55,5 +57,3 @@ var cacti_types = {
     color: "FE9300"
   }
 };
-var max_num_of_cacti = 11;
-var all_cacti = {};

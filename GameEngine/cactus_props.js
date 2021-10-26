@@ -11,7 +11,7 @@
 
 var cacti_movement_speed = 1;
 var cacti_min_spawn_distance = 400;
-var max_num_of_cacti = 11;
+var max_num_of_cacti = 10;
 var all_cacti = {};
 var cacti_types = {
   "normal_cactus": {

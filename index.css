@@ -34,7 +34,8 @@ game_background{
 }
 
 user_interface{
-  
+  user-select: none;
+  pointer-events: none;
 }
 
 water_meter, health_bar{

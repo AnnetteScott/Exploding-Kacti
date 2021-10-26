@@ -9,7 +9,7 @@
 //   this.velocity = velocity
 // }
 
-var cacti_movement_speed = 1;
+var cacti_movement_speed = 2;
 var cacti_max_spawn_distance = 400;
 var cacti_types = {
   "normal_cactus": {

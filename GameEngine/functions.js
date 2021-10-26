@@ -135,3 +135,8 @@ function getPosAlongHypo(pos1, pos2, x){
   var y = (((d-b)/(c-a)) * x) + (((b * c) - (a * d))/(c - a));
   return y; 
 }
+
+
+function hitText(pos, color, size, string){
+  
+}

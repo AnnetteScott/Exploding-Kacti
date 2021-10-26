@@ -27,7 +27,7 @@ function gameMain(){
   spawnPond();
 
   window.setInterval(function(){spawnCactus(spawnChance(cacti_types))}, 1000);
-  window.setInterval(function(){moveAllCacti()}, 100);
+  window.setInterval(function(){moveAllCacti()}, 50);
 }
 gameMain();
 
@@ -51,7 +51,7 @@ function spawnPond(){
 function spawnCactus(type = "normal_cactus"){
   if(Object.keys(all_cacti).length < max_num_of_cacti){
     var pos = {x: center_of_game.x, y: center_of_game.y};
-    while(getLinearDistance(pos, center_of_game) < cacti_max_spawn_distance){
+    while(getLinearDistance(pos, center_of_game) < cacti_min_spawn_distance){
       pos = {x: (Math.random() * game_width), y: (Math.random() * game_height)};
     }
 
@@ -68,10 +68,22 @@ function spawnCactus(type = "normal_cactus"){
     cactus.classList.add(type);
     cactus.style.left = pos.x - 32 + "px";
     cactus.style.top = pos.y - 32 + "px";
-    document.querySelector("game").appendChild(cactus);
+    document.querySelector("cacti").appendChild(cactus);
 
     all_cacti[id] = new_cactus_object;
   }
+}
+
+function spawnHearts(){
+  var heart = document.createElement("heart");
+  var pos = {x: center_of_game.x, y: center_of_game.y};
+    while(getLinearDistance(pos, center_of_game) < heart_min_spawn_distance){
+      pos = {x: (Math.random() * game_width), y: (Math.random() * game_height)};
+    }
+  heart.style.left = pos.x - 32 + "px";
+  heart.style.top = pos.y - 32 + "px";
+
+  document.querySelector("game").appendChild(heart);
 }
 
 

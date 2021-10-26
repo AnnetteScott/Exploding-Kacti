@@ -188,6 +188,7 @@ crosshair{
   background-position: center;
   background-size: 100%;
   user-select: none;
+  pointer-events: none;
 }
 
 

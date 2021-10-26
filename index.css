@@ -34,17 +34,6 @@ game_background{
   background-size: 905px;
 }
 
-cacti{
-  position: absolute;
-  z-index: 2;
-  top: 0px;
-  right: 0px;
-  bottom: 0px;
-  left: 0px;
-  user-select: none;
-  pointer-events: none;
-}
-
 hittext{
   position: absolute;
   z-index: 3;
@@ -159,6 +148,17 @@ level p{
   text-align: left;
 }
 
+
+cacti{
+  position: absolute;
+  z-index: 2;
+  top: 0px;
+  right: 0px;
+  bottom: 0px;
+  left: 0px;
+  user-select: none;
+  pointer-events: none;
+}
 cactus{
   position: absolute;
   top: -50px;
@@ -238,6 +238,33 @@ crosshair{
   background-size: 100%;
   user-select: none;
   pointer-events: none;
+}
+
+
+
+hearts{
+  position: absolute;
+  z-index: 2;
+  top: 0px;
+  right: 0px;
+  bottom: 0px;
+  left: 0px;
+  user-select: none;
+  pointer-events: none;
+}
+heart{
+  position: absolute;
+  top: -50px;
+  left: -50px;
+  display: block;
+  width: 64px;
+  height: 64px;
+  background-image: url('Images/heart.png');
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: 100%;
+  user-select: none;
+  pointer-events: all;
 }
 
 

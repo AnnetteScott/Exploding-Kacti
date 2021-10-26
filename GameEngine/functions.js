@@ -165,7 +165,7 @@ function getPosAlongHypo(pos1, pos2, x){
 }
 
 
-function spawnHitText(pos, color, size, string){
+function spawnHitText(pos, color, size = 20, string){
   var hittext_elem = document.createElement("P");
   hittext_elem.innerHTML = string;
   hittext_elem.style.color = (color.includes("#") ? color : "#" + color);

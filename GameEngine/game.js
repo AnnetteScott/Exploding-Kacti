@@ -161,6 +161,12 @@ function shoot(elem){
 }
 
 
+function cactusAttack(){
+//makes cactus attack
+
+}
+
+
 function handleClickEvent(e){
   var elem = e.target;
   if(elem.tagName == "GAME_BACKGROUND"){

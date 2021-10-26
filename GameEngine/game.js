@@ -169,12 +169,15 @@ function cactusAttack(cacti_id){
     spawnHitText({x: center_of_game.x - 14, y: center_of_game.y - 100}, 'FF0000', 20, "-10");
     explode(center_of_game, 'ff0000');
     changeHealth(-10);
-    var pond_health = pond_item['pond_health'] - 1;
-    pondDamage(pond_health);
+    pond_item['pond_health'] -= 1;
+    pondDamage(pond_item['pond_health']);
   }
-
 }
 
+function gameOver(){
+//endgame
+
+}
 
 function handleClickEvent(e){
   var elem = e.target;

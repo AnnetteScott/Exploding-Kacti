@@ -130,8 +130,7 @@ function checkAmmo(){
 function checkScore(){
   var score = zeropad(parseInt(score_elem.innerHTML), 4);
   var new_max = getDifficultyLevel(score)['maxCacti'];
-  max_num_of_cacti = new_max;  
-  console.log(max_num_of_cacti);
+  max_num_of_cacti = new_max;
 }
 
 function explode(pos, color){

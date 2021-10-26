@@ -96,17 +96,19 @@ function explode(pos, color){
 
 function shoot(elem){
   var cacti_type = elem.classList.value;
-  if(checkAmmo() >= cacti_types[cacti_type]['health']){
-    var pos = {x: elem.offsetLeft + (elem.offsetWidth / 2), y: elem.offsetTop + (elem.offsetHeight / 2)};
-    var color = cacti_types[cacti_type]['color'];
-    var score = cacti_types[cacti_type]['points'];
-    var water_used = cacti_types[cacti_type]['health'];
-
-    delete all_cacti[elem.id];
-    elem.remove();
-    explode(pos, color);
-    changeScore(score);
-    changeWater(0 - water_used);
+  var cacti_id = elem.id;
+  var cactus_obj = all_cacti[cacti_id];
+  if(checkAmmo() > 0){
+    if(cactus_obj['remaining_health'] > 10){
+      cactus_obj['remaining_health'] -= 10;
+      explode(cactus_obj['position'], '0000ff');
+    } else{
+      delete all_cacti[cacti_id];
+      elem.remove();
+      explode(cactus_obj['position'], cacti_types[cacti_type]['color']);
+      changeScore(cacti_types[cacti_type]['points']);
+    }
+    changeWater(-10);
   }
 }
 
@@ -114,8 +116,9 @@ function shoot(elem){
 function handleClickEvent(e){
   var elem = e.target;
   console.log(elem.tagName);
-  if(elem.tagName == "GAME_BACKGROUND"){
+  if(elem.tagName == "GAME_BACKGROUND" && checkAmmo() > 0){
     explode({x: e.clientX, y: e.clientY}, 'EAD997');
+    changeWater(-10);
   }else if(elem.tagName == "CACTUS"){
     shoot(elem);
   }

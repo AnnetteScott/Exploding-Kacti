@@ -82,14 +82,14 @@ function getDifficultyLevel(score){
   var next_diff = difficulty[0]['scoreThreshold'];
   var length = difficulty.length;
 
-  if (score > difficulty[length - 1]['scoreThreshold']){
+  if (score >= difficulty[length - 1]['scoreThreshold']){
       level = difficulty[length - 1]
-  } else if (score < difficulty[0]['scoreThreshold']){
+  } else if (score <= difficulty[0]['scoreThreshold']){
       level = difficulty[0]
   } else {
-    var i = 0;
+      var i = 0;
       while(i < length){
-          if (previous_diff < score && next_diff > score){
+          if (previous_diff <= score && next_diff > score){
               level = difficulty[i - 1];
               break;
           } else {
@@ -165,7 +165,6 @@ function getPosAlongHypo(pos1, pos2, x){
 
 
 function spawnHitText(pos, color, size, string){
-  console.log(pos);
   var hittext_elem = document.createElement("P");
   hittext_elem.innerHTML = string;
   hittext_elem.style.color = (color.includes("#") ? color : "#" + color);

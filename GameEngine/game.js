@@ -26,9 +26,8 @@ function gameMain(){
 
   spawnPond();
 
-  //window.setInterval(function(){spawnCactus(spawnChance(cacti_types))}, 1000);
-  spawnCactus(spawnChance(cacti_types));
-  window.setInterval(function(){moveAllCacti()}, 1000);
+  window.setInterval(function(){spawnCactus(spawnChance(cacti_types))}, 1000);
+  window.setInterval(function(){moveAllCacti()}, 100);
 }
 gameMain();
 
@@ -77,21 +76,20 @@ function spawnCactus(type = "normal_cactus"){
 
 
 function moveAllCacti(){
-  console.log("maved");
   Object.keys(all_cacti).forEach((k) => {
     var obj = all_cacti[k];
     var elem = document.getElementById(obj.id);
     var current_pos = obj['position'];
+    var new_x = 0;
+    if(current_pos.x < center_of_game.x){
+      new_x = current_pos.x + cacti_movement_speed;
+    } else {
+      new_x = current_pos.x - cacti_movement_speed;
+    }
+  
+    var new_y = getPosAlongHypo(current_pos, center_of_game, new_x);
 
-    var angle = Math.atan((current_pos.y - center_of_game.y) / (current_pos.x - center_of_game.x));
-
-    var distance = getLinearDistance(current_pos, center_of_game) - cacti_movement_speed;
-
-    var temp_pos = polarToCartesian(radToDeg(angle), distance, [center_of_game.x, center_of_game.y]);
-    var new_pos = {x: temp_pos[0], y: temp_pos[1]};
-
-    console.log(current_pos);
-    console.log(new_pos);
+    var new_pos = {x: new_x, y: new_y};
 
     all_cacti[k]['position'] = new_pos;
     elem.style.left = new_pos.x - 32 + "px";

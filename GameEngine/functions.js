@@ -125,3 +125,13 @@ function crosshair(){
   crosshair_elem.style.top = cursor_position.y - 8 + "px";
 }
 
+
+function getPosAlongHypo(pos1, pos2, x){
+  var a = pos1.x;
+  var b = pos1.y;
+  var c = pos2.x;
+  var d = pos2.y;
+
+  var y = (((d-b)/(c-a)) * x) + (((b * c) - (a * d))/(c - a));
+  return y; 
+}

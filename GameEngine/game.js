@@ -71,6 +71,12 @@ function spawnCactus(type = "normal_cactus"){
     document.querySelector("cacti").appendChild(cactus);
 
     all_cacti[id] = new_cactus_object;
+
+    var random = Math.floor(Math.random() * heart_item['spawn_chance']);
+    if(random == 1){
+      spawnHearts();
+    }
+    
   }
 }
 
@@ -148,5 +154,9 @@ function handleClickEvent(e){
     changeWater(-10);
   }else if(elem.tagName == "CACTUS"){
     shoot(elem);
+  }else if(elem.tagName == "HEART"){
+    explode({x: e.clientX, y: e.clientY}, 'ff0000');
+    elem.remove();
+    changeHealth(heart_item['health_regen'])
   }
 }

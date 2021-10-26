@@ -171,11 +171,14 @@ function cactusAttack(cacti_id){
     changeHealth(-10);
     pond_item['pond_health'] -= 1;
     pondDamage(pond_item['pond_health']);
+    gameOver();
   }
 }
 
 function gameOver(){
-//endgame
+  if(pond_item['pond_health'] <= 0){
+    //ENDGAME
+  }
 
 }
 

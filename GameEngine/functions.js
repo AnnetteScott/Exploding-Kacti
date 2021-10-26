@@ -182,11 +182,12 @@ function cactusAttack(){
 
 function pondDamage(pond_health){
   const pond_images = [
-    "pond10",
-    "pond8",
-    "pond6",
+    "pond2",
     "pond4",
-    "pond2"
+    "pond6",
+    "pond8",
+    "pond10"
   ]
-  pond_elem.style.backgroundImage("Images/ponds/" + pond_images[some_number] + ".png");
+  pond_level = parseInt(pond_health/2)
+  pond_elem.style.backgroundImage("Images/ponds/" + pond_images[pond_level] + ".png");
 }

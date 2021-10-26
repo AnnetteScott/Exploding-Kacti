@@ -87,7 +87,7 @@ function spawnCactus(type = "normal_cactus"){
 function spawnHearts(){
   var heart = document.createElement("heart");
   var pos = {x: center_of_game.x, y: center_of_game.y};
-    while(getLinearDistance(pos, center_of_game) < heart_min_spawn_distance){
+    while(getLinearDistance(pos, center_of_game) < heart_item['heart_min_spawn_distance']){
       pos = {x: (Math.random() * game_width), y: (Math.random() * game_height)};
     }
   heart.style.left = pos.x - 16 + "px";
@@ -169,6 +169,8 @@ function cactusAttack(cacti_id){
     spawnHitText({x: center_of_game.x - 14, y: center_of_game.y - 100}, 'FF0000', 20, "-10");
     explode(center_of_game, 'ff0000');
     changeHealth(-10);
+    var pond_health = pond_item['pond_health'] - 1;
+    pondDamage(pond_health);
   }
 
 }

@@ -73,6 +73,7 @@ function changeHealth(modifier){
   }
   health_bar_elem.style.height = current_amount + "%";
   health_bar_text_elem.innerHTML = current_amount + "%";
+  pondDamage(pond_item['pond_health'] + modifier);
 }
 
 
@@ -192,6 +193,7 @@ function pondDamage(pond_health){
     "pond8",
     "pond10"
   ];
+  
   pond_level = parseInt(pond_health / 2);
   document.querySelector("pond").style.backgroundImage = "url(Images/ponds/" + pond_images[pond_level] + ".png)";
 }

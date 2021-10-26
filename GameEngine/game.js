@@ -134,18 +134,18 @@ function shoot(elem){
   if(checkAmmo() > 0){
     if(cactus_obj['remaining_health'] > 10){
       cactus_obj['remaining_health'] -= 10;
-      spawnHitText({x: cactus_obj['position'].x - 14, y: cactus_obj['position'].y - 64}, 'FF0000', 18, "-10");
+      spawnHitText({x: cactus_obj['position'].x - 14, y: cactus_obj['position'].y - 64}, 'FF0000', 20, "-10");
       explode(cactus_obj['position'], '0000FF');
     } else{
       delete all_cacti[cacti_id];
       elem.remove();
-      spawnHitText({x: cactus_obj['position'].x - 14, y: cactus_obj['position'].y - 64}, 'FF0000', 18, "-10");
+      spawnHitText({x: cactus_obj['position'].x - 14, y: cactus_obj['position'].y - 64}, 'FF0000', 20, "-10");
       explode(cactus_obj['position'], cacti_types[cacti_type]['color']);
       changeScore(cacti_types[cacti_type]['points']);
     }
     changeWater(-10);
   }else{
-    spawnHitText({x: center_of_game.x - 85, y: center_of_game.y - 100}, '808080', 26, "OUT&nbsp;OF&nbsp;WATER");
+    spawnHitText({x: center_of_game.x - 85, y: center_of_game.y - 100}, '202020', 26, "OUT&nbsp;OF&nbsp;WATER");
   }
 }
 
@@ -153,13 +153,18 @@ function shoot(elem){
 function handleClickEvent(e){
   var elem = e.target;
   console.log(elem.tagName);
-  if(elem.tagName == "GAME_BACKGROUND" && checkAmmo() > 0){
-    explode({x: e.clientX, y: e.clientY}, 'EAD997');
-    changeWater(-10);
+  if(elem.tagName == "GAME_BACKGROUND"){
+    if(checkAmmo() > 0){
+      explode({x: e.clientX, y: e.clientY}, 'EAD997');
+      changeWater(-10);
+    }else{
+      spawnHitText({x: center_of_game.x - 85, y: center_of_game.y - 100}, '202020', 26, "OUT&nbsp;OF&nbsp;WATER");
+    }
   }else if(elem.tagName == "CACTUS"){
     shoot(elem);
   }else if(elem.tagName == "HEART"){
     explode({x: e.clientX, y: e.clientY}, 'ff0000');
+    spawnHitText({x: e.clientX - 14, y: e.clientY - 32}, 'FF0000', 20, "+10");
     elem.remove();
     changeHealth(heart_item['health_regen'])
   }

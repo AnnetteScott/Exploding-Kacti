@@ -76,6 +76,33 @@ function changeHealth(modifier){
 }
 
 
+function getDifficultyLevel(score){
+  var level = {};
+  var previous_diff = 0;
+  var next_diff = difficulty[0]['scoreThreshold'];
+  var length = difficulty.length;
+
+  if (score > difficulty[length - 1]['scoreThreshold']){
+      level = difficulty[length - 1]
+  } else if (score < difficulty[0]['scoreThreshold']){
+      level = difficulty[0]
+  } else {
+    var i = 0;
+      while(i < length){
+          if (previous_diff < score && next_diff > score){
+              level = difficulty[i - 1];
+              break;
+          } else {
+              previous_diff = next_diff;
+              next_diff = difficulty[i + 1]['scoreThreshold'];
+          }
+        i++;
+      }
+    }   
+  return level;
+}
+
+
 function getLinearDistance(p1, p2){
   return Math.sqrt(((p2.x - p1.x) * (p2.x - p1.x)) + ((p2.y - p1.y) * (p2.y - p1.y)));
 }

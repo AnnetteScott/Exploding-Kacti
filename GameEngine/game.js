@@ -49,6 +49,7 @@ function spawnPond(){
 
 
 function spawnCactus(type = "normal_cactus"){
+  checkScore();
   if(Object.keys(all_cacti).length < max_num_of_cacti){
     var pos = {x: center_of_game.x, y: center_of_game.y};
     while(getLinearDistance(pos, center_of_game) < cacti_min_spawn_distance){
@@ -121,6 +122,13 @@ function checkAmmo(){
 }
 
 
+function checkScore(){
+  var score = zeropad(parseInt(score_elem.innerHTML), 4);
+  var new_max = getDifficultyLevel(score)['maxCacti'];
+  max_num_of_cacti = new_max;  
+  console.log(max_num_of_cacti);
+}
+
 function explode(pos, color){
   changeColour(color);
   createEmitter({clientX: pos.x, clientY: pos.y});
@@ -152,7 +160,6 @@ function shoot(elem){
 
 function handleClickEvent(e){
   var elem = e.target;
-  console.log(elem.tagName);
   if(elem.tagName == "GAME_BACKGROUND"){
     if(checkAmmo() > 0){
       explode({x: e.clientX, y: e.clientY}, 'EAD997');

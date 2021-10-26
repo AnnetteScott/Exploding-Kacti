@@ -86,8 +86,8 @@ function spawnHearts(){
     while(getLinearDistance(pos, center_of_game) < heart_min_spawn_distance){
       pos = {x: (Math.random() * game_width), y: (Math.random() * game_height)};
     }
-  heart.style.left = pos.x - 32 + "px";
-  heart.style.top = pos.y - 32 + "px";
+  heart.style.left = pos.x - 16 + "px";
+  heart.style.top = pos.y - 16 + "px";
 
   document.querySelector("hearts").appendChild(heart);
 }

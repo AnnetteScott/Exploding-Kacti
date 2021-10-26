@@ -26,8 +26,9 @@ function gameMain(){
 
   spawnPond();
 
-  window.setInterval(function(){spawnCactus(spawnChance(cacti_types))}, 1000);
-  window.setInterval(function(){moveAllCacti()}, 100);
+  //window.setInterval(function(){spawnCactus(spawnChance(cacti_types))}, 1000);
+  spawnCactus(spawnChance(cacti_types));
+  window.setInterval(function(){moveAllCacti()}, 1000);
 }
 gameMain();
 
@@ -76,10 +77,26 @@ function spawnCactus(type = "normal_cactus"){
 
 
 function moveAllCacti(){
-  all_cacti.forEach((c) => {
-    var elem = document.getElementById(c);
+  console.log("maved");
+  Object.keys(all_cacti).forEach((k) => {
+    var obj = all_cacti[k];
+    var elem = document.getElementById(obj.id);
+    var current_pos = obj['position'];
 
-  })
+    var angle = Math.atan((current_pos.y - center_of_game.y) / (current_pos.x - center_of_game.x));
+
+    var distance = getLinearDistance(current_pos, center_of_game) - cacti_movement_speed;
+
+    var temp_pos = polarToCartesian(radToDeg(angle), distance, [center_of_game.x, center_of_game.y]);
+    var new_pos = {x: temp_pos[0], y: temp_pos[1]};
+
+    console.log(current_pos);
+    console.log(new_pos);
+
+    all_cacti[k]['position'] = new_pos;
+    elem.style.left = new_pos.x - 32 + "px";
+    elem.style.top = new_pos.y - 32 + "px";
+  });
 }
 
 

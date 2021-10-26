@@ -175,8 +175,12 @@ function spawnHitText(pos, color, size, string){
 }
 
 
-function cactusAttack(){
-
+function checkPondCollision(cactus_id){
+  if(getLinearDistance(center_of_game, all_cacti[cactus_id]['position']) <= pond_hit_distance){
+    return true;
+  }else{
+    return false;
+  }
 }
 
 

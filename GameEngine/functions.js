@@ -82,23 +82,23 @@ function getDifficultyLevel(score){
   var next_diff = difficulty[0]['scoreThreshold'];
   var length = difficulty.length;
 
-  if (score >= difficulty[length - 1]['scoreThreshold']){
+  if(score >= difficulty[length - 1]['scoreThreshold']){
       level = difficulty[length - 1]
-  } else if (score <= difficulty[0]['scoreThreshold']){
+  }else if (score <= difficulty[0]['scoreThreshold']){
       level = difficulty[0]
-  } else {
-      var i = 0;
-      while(i < length){
-          if (previous_diff <= score && next_diff > score){
-              level = difficulty[i - 1];
-              break;
-          } else {
-              previous_diff = next_diff;
-              next_diff = difficulty[i + 1]['scoreThreshold'];
-          }
-        i++;
+  }else{
+    var i = 0;
+    while(i < length){
+      if (previous_diff <= score && next_diff > score){
+        level = difficulty[i - 1];
+        break;
+      }else{
+        previous_diff = next_diff;
+        next_diff = difficulty[i + 1]['scoreThreshold'];
       }
-    }   
+      i++;
+    }
+  }
   return level;
 }
 

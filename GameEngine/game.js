@@ -79,7 +79,7 @@ function checkAmmo(){
 
 function explode(pos, color){
   changeColour(color);
-  createEmitter(pos);
+  createEmitter({clientX: pos.x, clientY: pos.y});
 }
 
 
@@ -112,8 +112,7 @@ function handleClickEvent(e){
   var elem = e.target;
   console.log(elem.tagName);
   if(elem.tagName == "GAME_BACKGROUND"){
-    var x = elem.offsetLeft + (elem.offsetWidth / 2);
-    var y = elem.offsetTop + (elem.offsetHeight / 2);
+    explode({x: e.clientX, y: e.clientY}, 'EAD997');
   }else if(elem.tagName == "CACTUS"){
     shoot(elem);
   }

@@ -53,15 +53,23 @@ function spawnCactus(type = "normal_cactus"){
     while(getLinearDistance(pos, center_of_game) < cacti_max_spawn_distance){
       pos = {x: (Math.random() * game_width), y: (Math.random() * game_height)};
     }
-    var id = generateID();
+
     var cactus = document.createElement("cactus");
-    cactus.classList.add(type);
+    var id = generateID();
+    var new_cactus_object = {
+      'dom_element': cactus,
+      'id': id,
+      'type': type,
+      'position': {x: pos.x, y: pos.y},
+      'remaining_health': cacti_types[type]['health']
+    };
     cactus.id = id;
-    //cactus.setAttribute('onclick', "explode(event)");
+    cactus.classList.add(type);
     cactus.style.left = pos.x - 32 + "px";
     cactus.style.top = pos.y - 32 + "px";
     document.querySelector("game").appendChild(cactus);
-    all_cacti.push(id);
+
+    all_cacti[id] = new_cactus_object;
   }
 }
 

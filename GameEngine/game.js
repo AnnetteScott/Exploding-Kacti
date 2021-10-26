@@ -27,6 +27,7 @@ function gameMain(){
   spawnPond();
 
   window.setInterval(function(){spawnCactus(spawnChance(cacti_types))}, 1000);
+  window.setInterval(function(){moveAllCacti()}, 100);
 }
 gameMain();
 
@@ -75,7 +76,10 @@ function spawnCactus(type = "normal_cactus"){
 
 
 function moveAllCacti(){
-//TODO
+  all_cacti.forEach((c) => {
+    var elem = document.getElementById(c);
+
+  })
 }
 
 
@@ -98,10 +102,7 @@ function shoot(elem){
     var score = cacti_types[cacti_type]['points'];
     var water_used = cacti_types[cacti_type]['health'];
 
-    const index = all_cacti.indexOf(elem.id);
-    if (index > -1) {
-      all_cacti.splice(index, 1);
-    }
+    delete all_cacti[elem.id];
     elem.remove();
     explode(pos, color);
     changeScore(score);

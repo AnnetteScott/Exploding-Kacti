@@ -54,4 +54,4 @@ var cacti_types = {
   }
 };
 var max_num_of_cacti = 11;
-var all_cacti = [];
+var all_cacti = {};

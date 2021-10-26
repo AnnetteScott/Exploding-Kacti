@@ -77,7 +77,7 @@ function spawnCactus(type = "normal_cactus"){
 function spawnHearts(){
   var heart = document.createElement("heart");
   var pos = {x: center_of_game.x, y: center_of_game.y};
-    while(getLinearDistance(pos, center_of_game) < cacti_min_spawn_distance){
+    while(getLinearDistance(pos, center_of_game) < heart_min_spawn_distance){
       pos = {x: (Math.random() * game_width), y: (Math.random() * game_height)};
     }
   heart.style.left = pos.x - 32 + "px";

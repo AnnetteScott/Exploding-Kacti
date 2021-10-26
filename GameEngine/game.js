@@ -21,14 +21,13 @@ crosshair_elem.style.top = center_of_game.y + "px";
 
 
 /*==============Main Game Loop============*/
-
+let game_params = {};
 function gameMain(){
 
   spawnPond();
 
   window.setInterval(function(){spawnCactus(spawnChance(cacti_types))}, 1000);
 }
-gameMain();
 
 
 
@@ -66,6 +65,9 @@ function spawnCactus(type = "normal_cactus"){
   }
 }
 
+function moveAllCacti(){
+
+}
 
 function checkAmmo(){
   return parseInt(water_meter_elem.style.height.split("%")[0]);
@@ -138,5 +140,9 @@ function handleClickEvent(e){
   if(elem.tagName == "GAME_BACKGROUND"){
     var x = elem.offsetLeft + (elem.offsetWidth / 2);
     var y = elem.offsetTop + (elem.offsetHeight / 2);
+  }else if(elem.tagName == "cactus"){
+    var x = elem.offsetLeft + (elem.offsetWidth / 2);
+    var y = elem.offsetTop + (elem.offsetHeight / 2);
+    checkHit({x: x, y: y});
   }
 }

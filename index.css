@@ -277,3 +277,13 @@ heart{
   50%  {transform: translateY(-25px);}
   100% {transform: translateY(0px);}
 }
+.a_cactus_celebration{
+  animation: a_cactus_celebration 0.8s linear infinite;
+}
+@keyframes a_cactus_celebration{
+  0%   {transform: translateY(0px);}
+  20%  {transform: translateY(0px);}
+  50%  {transform: translateY(-25px);}
+  80%  {transform: translateY(0px);}
+  100% {transform: translateY(0px);}
+}

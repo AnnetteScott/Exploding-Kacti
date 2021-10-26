@@ -20,6 +20,7 @@ crosshair_elem.style.top = center_of_game.y + "px";
 
 var pond_elem;
 
+var anim_intervals = {};
 
 
 /*==============Main Game Loop============*/
@@ -28,8 +29,8 @@ function gameMain(){
 
   spawnPond();
 
-  window.setInterval(function(){spawnCactus(spawnChance(cacti_types))}, 1000);
-  window.setInterval(function(){moveAllCacti()}, 50);
+  anim_intervals['spawn_cacti'] = window.setInterval(function(){spawnCactus(spawnChance(cacti_types))}, 1000);
+  anim_intervals['move_cacti'] = window.setInterval(function(){moveAllCacti()}, 50);
 }
 gameMain();
 
@@ -178,6 +179,11 @@ function cactusAttack(cacti_id){
 function gameOver(){
   if(pond_item['pond_health'] <= 0){
     //ENDGAME
+    window.clearInterval(anim_intervals['spawn_cacti']);
+    window.clearInterval(anim_intervals['move_cacti']);
+    document.querySelectorAll('cactus').forEach((elem) => {
+      elem.classList.add("a_cactus_celebration");
+    });
   }
 
 }

@@ -103,9 +103,7 @@ function explode(event){
 
 
 function shoot(pos){
-  var hit = checkHit(pos);
   if(checkAmmo() > 0){
-    var pos = {clientX: x, clientY: y};
     var id = elem.id;
     var type = elem.classList.value;
     var color = '034206';
@@ -127,11 +125,6 @@ function shoot(pos){
     changeScore(score);
 
   }
-}
-
-
-function checkHit(pos){
-  return 1;
 }
 
 

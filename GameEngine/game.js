@@ -6,8 +6,8 @@ var center_of_game = {x: (game_width / 2), y: (game_height / 2)};
 var cursor_position = {x: 0, y: 0};
 
 var score_elem = document.querySelector("score p");
-var health_bar_elem = document.querySelector("water_meter div");
-var health_bar_text_elem = document.querySelector("water_meter p");
+var health_bar_elem = document.querySelector("health_bar div");
+var health_bar_text_elem = document.querySelector("health_bar p");
 var water_meter_elem = document.querySelector("water_meter div");
 var water_meter_text_elem = document.querySelector("water_meter p");
 
@@ -116,6 +116,8 @@ function moveAllCacti(){
     all_cacti[k]['position'] = new_pos;
     elem.style.left = new_pos.x - 32 + "px";
     elem.style.top = new_pos.y - 32 + "px";
+
+    cactusAttack(k);
   });
 }
 
@@ -161,8 +163,14 @@ function shoot(elem){
 }
 
 
-function cactusAttack(){
-//makes cactus attack
+function cactusAttack(cacti_id){
+  if(checkPondCollision(cacti_id)){
+    delete all_cacti[cacti_id];
+    document.getElementById(cacti_id).remove();
+    spawnHitText({x: center_of_game.x - 14, y: center_of_game.y - 100}, 'FF0000', 20, "-10");
+    explode(center_of_game, 'ff0000');
+    changeHealth(-10);
+  }
 
 }
 
@@ -182,6 +190,6 @@ function handleClickEvent(e){
     explode({x: e.clientX, y: e.clientY}, 'ff0000');
     spawnHitText({x: center_of_game.x - 14, y: center_of_game.y - 100}, 'FF0000', 20, "+10");
     elem.remove();
-    changeHealth(heart_item['health_regen'])
+    changeHealth(heart_item['health_regen']);
   }
 }

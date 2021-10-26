@@ -8,22 +8,23 @@ function zeropad(str, len){
 }
 
 
-function spawnChance(obj_arr){
+function spawnChance(obj){
+  var obj_arr = Object.keys(obj);
   var output;
   var chance_total = 0;
   for(var i = 0; i < obj_arr.length; i++){
-    chance_total += obj_arr[i].spawn_chance;
+    chance_total += obj[obj_arr[i]].spawn_chance;
   }
   var rand = Math.random() * chance_total;
 
   var i = 0;
   var prevoius_chance = 0;
   while(i < obj_arr.length){
-    if(prevoius_chance < rand && rand < (prevoius_chance + obj_arr[i].spawn_chance)){
-      output = obj_arr[i].type;
+    if(prevoius_chance < rand && rand < (prevoius_chance + obj[obj_arr[i]].spawn_chance)){
+      output = obj[obj_arr[i]].type;
       i = obj_arr.length + 1;
     }else{
-      prevoius_chance += obj_arr[i].spawn_chance;
+      prevoius_chance += obj[obj_arr[i]].spawn_chance;
     }
     i++;
   }

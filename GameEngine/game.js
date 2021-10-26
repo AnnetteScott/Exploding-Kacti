@@ -65,65 +65,44 @@ function spawnCactus(type = "normal_cactus"){
   }
 }
 
+
 function moveAllCacti(){
 //TODO
 }
+
 
 function checkAmmo(){
   return parseInt(water_meter_elem.style.height.split("%")[0]);
 }
 
-function explode(event){
-  if(checkAmmo() > 0){
-    var elem = event.target;
-    var x = elem.offsetLeft + (elem.offsetWidth / 2);
-    var y = elem.offsetTop + (elem.offsetHeight / 2);
-    var pos = {clientX: x, clientY: y};
-    var id = elem.id;
-    var type = elem.classList.value;
-    var color = '034206';
-    var score = 0;
-    for(var i = 0; i < cacti_types.length; i++){
-      if(cacti_types[i].type == type){
-        color = cacti_types[i].color;
-        score = cacti_types[i].points;
-      }
-    }
-    changeColour(color);
-    elem.remove();
-    const index = all_cacti.indexOf(id);
-    if (index > -1) {
-      all_cacti.splice(index, 1);
-    }
-    createEmitter(pos);
-    changeScore(score);
-    changeWater(-10);
-  }
+
+function explode(pos, color){
+  changeColour(color);
+  createEmitter(pos);
 }
 
 
-function shoot(pos){
+function shoot(elem){
   if(checkAmmo() > 0){
-    var id = elem.id;
-    var type = elem.classList.value;
+    var pos = {x: elem.offsetLeft + (elem.offsetWidth / 2), y: elem.offsetTop + (elem.offsetHeight / 2)};
     var color = '034206';
     var score = 0;
+    var water_used = 0;
     for(var i = 0; i < cacti_types.length; i++){
-      if(cacti_types[i].type == type){
+      if(cacti_types[i].type == elem.classList.value){
         color = cacti_types[i].color;
         score = cacti_types[i].points;
-        changeWater(0 - cacti_types[i].health);
+        water_used = cacti_types[i].health;
       }
     }
-    changeColour(color);
-    elem.remove();
-    const index = all_cacti.indexOf(id);
+    const index = all_cacti.indexOf(elem.id);
     if (index > -1) {
       all_cacti.splice(index, 1);
     }
-    createEmitter(pos);
+    elem.remove();
+    explode(pos, color);
     changeScore(score);
-
+    changeWater(0 - water_used);
   }
 }
 
@@ -135,8 +114,6 @@ function handleClickEvent(e){
     var x = elem.offsetLeft + (elem.offsetWidth / 2);
     var y = elem.offsetTop + (elem.offsetHeight / 2);
   }else if(elem.tagName == "cactus"){
-    var x = elem.offsetLeft + (elem.offsetWidth / 2);
-    var y = elem.offsetTop + (elem.offsetHeight / 2);
-    checkHit({x: x, y: y});
+    shoot(elem);
   }
 }

@@ -9,7 +9,7 @@ var pond_item = {
 
 var heart_item = {
   'health_regen': 10,
-  'spawn_chance': 2,
+  'spawn_chance': 20,
   'heart_min_spawn_distance': 400
 };
 

@@ -187,14 +187,20 @@ function checkPondCollision(cactus_id){
 
 
 function pondDamage(pond_health){
-  const pond_images = [
-    "pond2",
-    "pond4",
-    "pond6",
-    "pond8",
-    "pond10"
-  ];
-  
-  pond_level = parseInt((pond_health / 10) / 2);
-  document.querySelector("pond").style.backgroundImage = "url(Images/ponds/" + pond_images[pond_level] + ".png)";
+  var pond_images = '';
+  if(pond_health > 80){
+    pond_images = 'pond10';
+  }else if(pond_health <= 80 && pond_health > 60){
+    pond_images = 'pond8';
+  }else if(pond_health <= 60 && pond_health > 40){
+    pond_images = 'pond6';
+  }else if(pond_health <= 40 && pond_health > 20){
+    pond_images = 'pond4';
+  }else if(pond_health <= 20 && pond_health > 1){
+    pond_images = 'pond2';
+  }else if(pond_health <= 0){
+    pond_images = 'pond0';
+  }
+
+  document.querySelector("pond").style.backgroundImage = "url(Images/ponds/" + pond_images + ".png)";
 }

@@ -196,5 +196,5 @@ function pondDamage(pond_health){
   ];
   
   pond_level = parseInt((pond_health / 10) / 2);
-  document.querySelector("pond").style.backgroundImage = "url(Images/ponds/" + pond_images[pond_level - 1] + ".png)";
+  document.querySelector("pond").style.backgroundImage = "url(Images/ponds/" + pond_images[pond_level] + ".png)";
 }

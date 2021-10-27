@@ -130,10 +130,11 @@ function checkAmmo(){
 
 function checkScore(){
   var score = zeropad(parseInt(score_elem.innerHTML), 4);
-  var new_max = getDifficultyLevel(score)['maxCacti'];
-  var new_spawn_speed = getDifficultyLevel(score)['spawnSpeed'];
-  max_num_of_cacti = new_max;
-  spawn_speed = new_spawn_speed;
+  var current_level = getDifficultyLevel(score)
+  max_num_of_cacti = current_level['maxCacti'];
+  spawn_speed = current_level['spawnSpeed'];
+  cacti_movement_speed = current_level['cactiMovingSpeed'];
+  cacti_types['fire_cactus']['spawn_chance'] = current_level['fireCacti']
 }
 
 function explode(pos, color){

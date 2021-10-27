@@ -29,7 +29,7 @@ function gameMain(){
 
   spawnPond();
 
-  anim_intervals['spawn_cacti'] = window.setInterval(function(){spawnCactus(spawnChance(cacti_types))}, 1000);
+  anim_intervals['spawn_cacti'] = window.setInterval(function(){spawnCactus(spawnChance(cacti_types))}, spawn_speed);
   anim_intervals['move_cacti'] = window.setInterval(function(){moveAllCacti()}, 50);
 }
 gameMain();
@@ -131,7 +131,9 @@ function checkAmmo(){
 function checkScore(){
   var score = zeropad(parseInt(score_elem.innerHTML), 4);
   var new_max = getDifficultyLevel(score)['maxCacti'];
+  var new_spawn_speed = getDifficultyLevel(score)['spawnSpeed'];
   max_num_of_cacti = new_max;
+  spawn_speed = new_spawn_speed;
 }
 
 function explode(pos, color){

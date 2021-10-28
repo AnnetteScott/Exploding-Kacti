@@ -6,7 +6,7 @@ function transmitToServer(data){
     begin_fetch_time = Date.now();
     $.ajax({
       method: "POST",
-      url: "",
+      url: "https://bluewyvern.herokuapp.com/arcade/exploding-kacti/add_score/",
       data: data,
       success: function(){
         const end_fetch_time = Date.now();

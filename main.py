@@ -32,8 +32,8 @@ def draw_game():
 
 
 run = True
-
-while run:
-      draw_game()
-      pygame.time.delay(10000)
-      run = False
+def main():
+      while run:
+            draw_game()
+            pygame.time.delay(10000)
+            run = False

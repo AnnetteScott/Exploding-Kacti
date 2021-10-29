@@ -1,5 +1,9 @@
 import math
 
+import pygame
+import pygame
+
+
 def zeropad(string, length):
 	string = str(string)
 	pad = ""
@@ -25,3 +29,9 @@ def between(x, min, max):
 
 def checkCollision(obj1, obj2):
 	return (obj1['size'] + obj2['size']) <= getLinearDistance(obj1['pos'], obj2['pos'])
+
+
+def createText(text, x, y):
+	myfont = pygame.font.SysFont('Comic Sans MS', 30)
+	textsurface = myfont.render(text, False, (0, 0, 0))
+	SCREEN.blit(textsurface,(x,y))

@@ -38,11 +38,11 @@ def draw_pond():
 	offsetY = SCREEN_HEIGHT / 2 - POND_DIM / 2
 	SCREEN.blit(POND, (offsetX, offsetY))
 
-def draw_meter():
-	bar_height = 80
-	bar_width = 30
-	barX = SCREEN_WIDTH - bar_width - 10
-	barY = 10
+def draw_meters():
+	bar_height = 15
+	bar_width = 100
+	barX = SCREEN_WIDTH / 2 - POND_DIM / 2 
+	barY = SCREEN_HEIGHT / 2 + POND_DIM / 2
 	pygame.draw.rect(SCREEN, (0, 0, 0), (barX, barY, bar_width, bar_height), 3)
 	barY = barY + bar_height
 	functions.createText('Health', 15, barX - 13, barY)
@@ -54,7 +54,7 @@ def draw_meter():
 
 draw_background()
 draw_pond()
-draw_meter()
+draw_meters()
 pygame.display.update()
 #####################################################################################
 #----------------------------------------Cacti--------------------------------------#

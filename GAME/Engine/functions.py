@@ -29,7 +29,7 @@ def between(x, min, max):
 def checkCollision(obj1, obj2):
 	return (obj1['size'] + obj2['size']) <= getLinearDistance(obj1['pos'], obj2['pos'])
 
-
+#pass width and height of the object and the x and y coordintes of it's center
 def checkObjectClick(width, height, x, y):
 	MOUSE_POS = pygame.mouse.get_pos()
 	if between(MOUSE_POS[0], x - width/2, x + width/2) and between(MOUSE_POS[1], y - height/2, y + height/2):

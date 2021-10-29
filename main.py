@@ -1,16 +1,19 @@
+#Libraries
 import pygame
 from pygame import image
 from pygame.constants import MOUSEBUTTONDOWN
-import functions
-
+pygame.font.init()
 pygame.init()
+#Function Files
+from Engine import functions
 
-#Screen
+
+#Screen and global variables
 MOUSE_POS = pygame.mouse.get_pos()
 POND_DIM = 128
 SCREEN_HEIGHT = 720
 SCREEN_WIDTH = 1280
-screen = pygame.display.set_mode((SCREEN_WIDTH, SCREEN_HEIGHT))
+SCREEN = pygame.display.set_mode((SCREEN_WIDTH, SCREEN_HEIGHT))
 pygame.display.set_caption("Exploding Kacti")
 
 #####################################################################################
@@ -24,7 +27,7 @@ def draw_background():
 	BACKGROUND = pygame.transform.scale(BACKGROUND, (image_dim, image_dim))
 	for y in range(0, SCREEN_HEIGHT, image_dim):
 		for x in range(0, SCREEN_WIDTH, image_dim):
-			screen.blit(BACKGROUND, (x, y))
+			SCREEN.blit(BACKGROUND, (x, y))
 
 #Draws pond in middle of screen
 def draw_pond():
@@ -32,14 +35,20 @@ def draw_pond():
 	POND = pygame.transform.scale(POND, (POND_DIM, POND_DIM))
 	offsetX = SCREEN_WIDTH / 2 - POND_DIM / 2
 	offsetY = SCREEN_HEIGHT / 2 - POND_DIM / 2
-	screen.blit(POND, (offsetX, offsetY))
+	SCREEN.blit(POND, (offsetX, offsetY))
 
 def draw_meter():
 	bar_height = 80
 	bar_width = 30
 	barX = SCREEN_WIDTH - bar_width - 10
 	barY = 10
-	pygame.draw.rect(screen, (0, 100, 255), (barX, barY, bar_width, bar_height), 3)
+	pygame.draw.rect(SCREEN, (0, 0, 0), (barX, barY, bar_width, bar_height), 3)
+	barY = barY + bar_height
+	functions.createText('Health', 15, barX - 13, barY)
+	barY = barY + 20
+	pygame.draw.rect(SCREEN, (0, 0, 0), (barX, barY, bar_width, bar_height), 3)
+	barY = barY + bar_height
+	functions.createText('Water', 15, barX - 13, barY)
 
 
 draw_background()
@@ -54,7 +63,7 @@ def draw_cactus():
 	image_dim = 64
 	cactus = pygame.image.load('Images/sprites/normal_cacti.png').convert_alpha()
 	cactus = pygame.transform.scale(cactus, (image_dim, image_dim))
-	screen.blit(cactus, (150, 150))
+	SCREEN.blit(cactus, (150, 150))
 
 
 

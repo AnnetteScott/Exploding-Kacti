@@ -1,4 +1,5 @@
 import math
+import random
 import pygame
 
 def zeropad(string, length):
@@ -36,3 +37,11 @@ def checkObjectClick(width, height, x, y):
 		return True
 	else:
 		return False
+
+
+def generateID():
+	char_pool = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"]
+	id = ""
+	for index in range(10):
+		id += char_pool[random.randrange(0, len(char_pool))]
+	return id

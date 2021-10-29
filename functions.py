@@ -18,3 +18,7 @@ def degToRad(deg):
 
 def radToDeg(rad):
   	return rad * (180 / math.pi)
+
+def between(x, min, max):
+	a_bool = x >= min and x <= max
+	return a_bool

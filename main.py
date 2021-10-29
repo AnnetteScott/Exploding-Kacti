@@ -7,14 +7,15 @@ pygame.init()
 #Function Files
 from Engine import constants
 from Engine import functions
+from Engine import routines
 
 
 #Screen and global variables
+SCREEN = constants.SCREEN
 MOUSE_POS = pygame.mouse.get_pos()
 POND_DIM = 128
-SCREEN_HEIGHT = 720
-SCREEN_WIDTH = 1280
-SCREEN = pygame.display.set_mode((SCREEN_WIDTH, SCREEN_HEIGHT))
+SCREEN_HEIGHT = constants.SCREEN_HEIGHT
+SCREEN_WIDTH = constants.SCREEN_WIDTH
 pygame.display.set_caption("Exploding Kacti")
 
 #####################################################################################
@@ -45,11 +46,11 @@ def draw_meters():
 	barY = SCREEN_HEIGHT / 2 + POND_DIM / 2
 	pygame.draw.rect(SCREEN, (0, 0, 0), (barX, barY, bar_width, bar_height), 3)
 	barY = barY + bar_height
-	functions.createText('Health', 15, barX - 13, barY)
+	routines.createText('Health', 15, barX - 13, barY)
 	barY = barY + 20
 	pygame.draw.rect(SCREEN, (0, 0, 0), (barX, barY, bar_width, bar_height), 3)
 	barY = barY + bar_height
-	functions.createText('Water', 15, barX - 13, barY)
+	routines.createText('Water', 15, barX - 13, barY)
 
 
 draw_background()

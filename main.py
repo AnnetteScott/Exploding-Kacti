@@ -14,6 +14,7 @@ from GAME.Engine import routines
 SCREEN = constants.SCREEN
 MOUSE_POS = pygame.mouse.get_pos()
 POND_DIM = 128
+SCREEN_CENTER = constants.SCREEN_CENTER
 SCREEN_HEIGHT = constants.SCREEN_HEIGHT
 SCREEN_WIDTH = constants.SCREEN_WIDTH
 pygame.display.set_caption("Exploding Kacti")
@@ -35,22 +36,23 @@ def draw_background():
 def draw_pond():
 	POND = pygame.image.load('GAME/Images/ponds/pond10.png')
 	POND = pygame.transform.scale(POND, (POND_DIM, POND_DIM))
-	offsetX = SCREEN_WIDTH / 2 - POND_DIM / 2
-	offsetY = SCREEN_HEIGHT / 2 - POND_DIM / 2
-	SCREEN.blit(POND, (offsetX, offsetY))
+	pond_offsetX = SCREEN_WIDTH / 2 - POND_DIM / 2
+	pond_offsetY = SCREEN_HEIGHT / 2 - POND_DIM / 2
+	SCREEN.blit(POND, (pond_offsetX, pond_offsetY))
 
 def draw_meters():
 	bar_height = 15
-	bar_width = 100
-	barX = SCREEN_WIDTH / 2 - POND_DIM / 2 
-	barY = SCREEN_HEIGHT / 2 + POND_DIM / 2
+	bar_width = POND_DIM
+	barX = SCREEN_CENTER['x'] - POND_DIM / 2 
+	barY = SCREEN_CENTER['y'] + POND_DIM / 2
 	pygame.draw.rect(SCREEN, (0, 0, 0), (barX, barY, bar_width, bar_height), 3)
-	barY = barY + bar_height
-	routines.createText('Health', 15, barX - 13, barY)
-	barY = barY + 20
+	routines.createText('Health', 15, barX + POND_DIM / 2 - 26, barY - 1)
+	barY += bar_height
 	pygame.draw.rect(SCREEN, (0, 0, 0), (barX, barY, bar_width, bar_height), 3)
-	barY = barY + bar_height
-	routines.createText('Water', 15, barX - 13, barY)
+	routines.createText('Water', 15, barX + POND_DIM / 2 - 21, barY - 1)
+	# barY = barY + 20
+	# pygame.draw.rect(SCREEN, (0, 0, 0), (barX, barY, bar_width, bar_height), 3)
+	# routines.createText('Water', 15, barX - 13, barY)
 
 
 draw_background()
@@ -63,7 +65,7 @@ pygame.display.update()
 
 def draw_cactus():
 	image_dim = 64
-	cactus = pygame.image.load('Images/sprites/normal_cacti.png').convert_alpha()
+	cactus = pygame.image.load('GAME/Images/sprites/normal_cacti.png').convert_alpha()
 	cactus = pygame.transform.scale(cactus, (image_dim, image_dim))
 	SCREEN.blit(cactus, (150, 150))
 
@@ -74,15 +76,12 @@ def draw_cactus():
 #------------------------------------Click Events-----------------------------------#
 #####################################################################################
 
-def click_events(event):
-	global MOUSE_POS
-	global index
-	MOUSE_POS = pygame.mouse.get_pos()
-	if functions.between(MOUSE_POS[0], SCREEN_WIDTH/2 - POND_DIM/2, SCREEN_WIDTH/2 + POND_DIM/2) and functions.between(MOUSE_POS[1], SCREEN_HEIGHT/2 - POND_DIM/2, SCREEN_HEIGHT/2 + POND_DIM/2):
-			print("THIS RAN")
-			draw_cactus()		
-			pygame.display.update()
-			pygame.time.delay(1000)
+def click_events():
+	print(functions.checkObjectClick(POND_DIM, POND_DIM, SCREEN_CENTER['x'], SCREEN_CENTER['y']))
+	if functions.checkObjectClick(POND_DIM, POND_DIM, SCREEN_CENTER['x'], SCREEN_CENTER['y']):
+		draw_cactus()		
+		pygame.display.update()
+		pygame.time.delay(1000)
 
 
 #PUT EVERYTHING BEFORE THIS
@@ -96,7 +95,7 @@ while run:
 	pygame.time.delay(100)
 	for event in pygame.event.get():
 		if event.type == MOUSEBUTTONDOWN:		
-			click_events(event)
+			click_events()
 			run = False
 
 pygame.quit()

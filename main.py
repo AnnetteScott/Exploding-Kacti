@@ -34,14 +34,17 @@ def draw_pond():
 	offsetY = SCREEN_HEIGHT / 2 - POND_DIM / 2
 	screen.blit(POND, (offsetX, offsetY))
 
-
 def draw_meter():
-	bar_width = 80
+	bar_height = 80
 	bar_width = 30
-	pygame.draw.rect(screen, (0, 0, 255), (300, 300, bar_width, bar_width))
+	barX = SCREEN_WIDTH - bar_width - 10
+	barY = 10
+	pygame.draw.rect(screen, (0, 100, 255), (barX, barY, bar_width, bar_height), 3)
+
 
 draw_background()
 draw_pond()
+draw_meter()
 pygame.display.update()
 #####################################################################################
 #----------------------------------------Cacti--------------------------------------#
@@ -65,29 +68,25 @@ def click_events(event):
 	global index
 	MOUSE_POS = pygame.mouse.get_pos()
 	if functions.between(MOUSE_POS[0], SCREEN_WIDTH/2 - POND_DIM/2, SCREEN_WIDTH/2 + POND_DIM/2) and functions.between(MOUSE_POS[1], SCREEN_HEIGHT/2 - POND_DIM/2, SCREEN_HEIGHT/2 + POND_DIM/2):
-			print("THIS RAN", index)
-			index += 1
-			draw_meter()
+			print("THIS RAN")
 			draw_cactus()		
 			pygame.display.update()
+			pygame.time.delay(1000)
 
 
-
+#PUT EVERYTHING BEFORE THIS
 #####################################################################################
 #--------------------------------------MAIN GAME------------------------------------#
 #####################################################################################
 #MAIN GAME
-def draw_game():
-	draw_cactus()
-	pygame.display.update()
 	
-index = 1
 run = True
 while run:
 	pygame.time.delay(100)
 	for event in pygame.event.get():
 		if event.type == MOUSEBUTTONDOWN:		
 			click_events(event)
+			run = False
 
 pygame.quit()
 

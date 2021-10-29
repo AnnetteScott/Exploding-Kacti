@@ -1,0 +1,86 @@
+{% extends 'main.html' %}
+{% load static %}
+{% block content %}
+
+  <head>
+    <link rel="stylesheet" href="https://gigabyte5671.github.io/DOM-Particles/dom-particles.css">
+    <link rel="stylesheet" href="{% static 'index.css' %}">
+  </head>
+  <body>
+    <preload_images>
+      <img src="{% static 'Images/ponds/pond0.png' %}" draggable="false">
+      <img src="{% static 'Images/ponds/pond2.png' %}" draggable="false">
+      <img src="{% static 'Images/ponds/pond4.png' %}" draggable="false">
+      <img src="{% static 'Images/ponds/pond6.png' %}" draggable="false">
+      <img src="{% static 'Images/ponds/pond8.png' %}" draggable="false">
+      <img src="{% static 'Images/ponds/pond10.png' %}" draggable="false">
+    </preload_images>
+    <game onmousemove="updateCursorPosition(event)" onclick="handleClickEvent(event)">
+      <game_background></game_background>
+
+      <main_menu class="">
+        <main_menu_inner>
+          <h1>Exploding Kacti</h1>
+          <button onclick="gameMain()" style="margin-top: 20px; margin-bottom: 10px;">Play</button>
+          <button onclick="getLeaderboardData()">Leaderboard</button>
+        </main_menu_inner>
+      </main_menu>
+
+      <leaderboard class="invisible">
+        <leaderboard_inner>
+          <h1>Leaderboard</h1>
+          <ol>
+            <li><i>Empty</i></li>
+            <li><i>Empty</i></li>
+            <li><i>Empty</i></li>
+            <li><i>Empty</i></li>
+            <li><i>Empty</i></li>
+            <li><i>Empty</i></li>
+            <li><i>Empty</i></li>
+            <li><i>Empty</i></li>
+            <li><i>Empty</i></li>
+            <li><i>Empty</i></li>
+          </ol>
+          <button onclick="closeLeaderboard()">Back</button>
+        </leaderboard_inner>
+      </leaderboard>
+      
+      <user_interface class="invisible">
+        <level><p>Level 1</p></level>
+        <health_bar><div style="height:100%;"></div><p>100%</p></health_bar>
+        <water_meter><div style="height:0%;"></div><p>0%</p></water_meter>
+        <score><p>0000</p></score>
+      </user_interface>
+      <aim_trace class="invisible"></aim_trace>
+      <crosshair class="invisible"></crosshair>
+
+      <cacti></cacti>
+
+      <hittext></hittext>
+
+      <hearts></hearts>
+
+      <end_screen class="invisible">
+        <end_screen_inner>
+          <h1>GAME OVER</h1>
+          <p>The kacti won.</p>
+          <p id="end_screen_score">Your score: </p>
+          <p>Enter your name here:</p>
+          <input type="text" name="playername" maxlength="3" onchange="updatePlayerName(event)">
+          <button onclick="submitScore()">Submit</button>
+          <button onclick="getLeaderboardData()" style="margin-top: 10px;">Leaderboard</button>
+        </end_screen_inner>
+      </end_screen>
+
+    </game>
+    <div id="particle_container"></div>
+  </body>
+  <script src="https://gigabyte5671.github.io/DOM-Particles/dom-particles.js"></script>
+  <script src="{% static 'GameEngine/functions.js' %}"></script>
+  <script src="{% static 'GameEngine/cactus_props.js' %}"></script>
+  <script src="{% static 'GameEngine/player_props.js' %}"></script>
+  <script src="{% static 'GameEngine/game.js' %}"></script>
+  <script src="{% static 'lib/jquery-3.6.0.min.js' %}"></script>
+  <script src="{% static 'GameEngine/post_high_score.js' %}"></script>
+
+{% endblock content %}

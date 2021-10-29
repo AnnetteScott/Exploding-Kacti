@@ -1,3 +1,5 @@
+//const page_navbar_height = parseInt(document.querySelector("nav") ? window.getComputedStyle(document.querySelector("nav")).getPropertyValue("height") : 0);
+var leaderboard_data;
 var game_elem = document.querySelector("game");
 var game_width = game_elem.offsetWidth;
 var game_height = game_elem.offsetHeight;
@@ -26,13 +28,17 @@ var anim_intervals = {};
 /*==============Main Game Loop============*/
 let game_params = {};
 function gameMain(){
+  document.querySelector("main_menu").classList.add("invisible");
+  document.querySelector("user_interface").classList.remove("invisible");
+  document.querySelector("aim_trace").classList.remove("invisible");
+  document.querySelector("crosshair").classList.remove("invisible");
 
   spawnPond();
 
   anim_intervals['spawn_cacti'] = window.setInterval(function(){spawnCactus(spawnChance(cacti_types))}, spawn_speed);
   anim_intervals['move_cacti'] = window.setInterval(function(){moveAllCacti()}, 50);
 }
-gameMain();
+//gameMain();
 
 
 
@@ -42,7 +48,6 @@ function spawnPond(){
   var pos = {x: (game_width / 2) - (64), y: (game_height / 2) - (64)};
   var id = "POND";
   var pond = document.createElement("pond");
-  pond.classList.add("pond");
   pond.id = id;
   pond.style.left = pos.x + "px";
   pond.style.top = pos.y + "px";
@@ -56,7 +61,7 @@ function spawnCactus(type = "normal_cactus"){
   checkScore();
   if(Object.keys(all_cacti).length < max_num_of_cacti){
     var pos = {x: center_of_game.x, y: center_of_game.y};
-    while(getLinearDistance(pos, center_of_game) < cacti_min_spawn_distance){
+    while(getLinearDistance(pos, center_of_game) < cacti_min_spawn_distance || between(pos.x, (center_of_game.x - 75), (center_of_game.x + 75))){
       pos = {x: (Math.random() * game_width), y: (Math.random() * game_height)};
     }
 
@@ -130,11 +135,13 @@ function checkAmmo(){
 
 function checkScore(){
   var score = zeropad(parseInt(score_elem.innerHTML), 4);
-  var current_level = getDifficultyLevel(score)
+  var current_level = getDifficultyLevel(score);
   max_num_of_cacti = current_level['maxCacti'];
   spawn_speed = current_level['spawnSpeed'];
   cacti_movement_speed = current_level['cactiMovingSpeed'];
-  cacti_types['fire_cactus']['spawn_chance'] = current_level['fireCacti']
+  cacti_types['fire_cactus']['spawn_chance'] = current_level['fireCacti'];
+  document.querySelector("level p").innerHTML = "Level " + current_level['level'];
+  heart_item['spawn_chance'] = current_level['heart_spawn_chance']
 }
 
 function explode(pos, color){
@@ -180,15 +187,48 @@ function cactusAttack(cacti_id){
 function gameOver(){
   if(pond_item['pond_health'] <= 0){
     //ENDGAME
+    pond_elem.classList.add("noafter");
     window.clearInterval(anim_intervals['spawn_cacti']);
     window.clearInterval(anim_intervals['move_cacti']);
     document.querySelectorAll('cactus').forEach((elem) => {
       elem.classList.add("a_cactus_celebration");
     });
     spawnHitText({x: center_of_game.x - 125, y: center_of_game.y - 100}, '202020', 36, "GAME&nbsp;OVER");
-  }
 
+    showEndScreen();
+  }
 }
+
+var playername = 'AAA';
+var final_score = 0;
+var can_submit_score = 1;
+function updatePlayerName(event){
+  playername = event.target.value;
+}
+
+
+function showEndScreen(){
+  var endscreen = document.querySelector("end_screen");
+  final_score = parseInt(score_elem.innerHTML);
+  document.querySelector("#end_screen_score").innerHTML += final_score;
+
+  endscreen.classList.remove("invisible");
+}
+function hideEndScreen(){
+  var endscreen = document.querySelector("end_screen");
+  endscreen.classList.add("invisible");
+}
+
+
+function submitScore(){
+  if(can_submit_score === 1){
+    can_submit_score = 0;
+    hideEndScreen();
+    transmitToServer({'name': playername, 'score': final_score});
+    window.location.reload();
+  }
+}
+
 
 function handleClickEvent(e){
   var elem = e.target;
@@ -207,4 +247,20 @@ function handleClickEvent(e){
     elem.remove();
     changeHealth(heart_item['health_regen']);
   }
+}
+
+
+function leaderboard(){
+  var lb_list = document.querySelectorAll("leaderboard li");
+  leaderboard_data.forEach((item, i) => {
+    if(item){
+      lb_list[i].innerHTML = item['fields']['name'] + ": " + item['fields']['score'];
+    }
+  });
+  document.querySelector("leaderboard").classList.remove("invisible");
+}
+
+function closeLeaderboard(){
+  document.querySelector("leaderboard").classList.add("invisible");
+  window.location.reload();
 }

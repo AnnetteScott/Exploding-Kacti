@@ -1,17 +1,55 @@
+function getCookie(name) {
+  var cookieValue = null;
+
+  if (document.cookie && document.cookie != '') {
+    var cookies = document.cookie.split(';');
+
+    for (var i = 0; i < cookies.length; i++) {
+      var cookie = jQuery.trim(cookies[i]);
+
+      if (cookie.substring(0, name.length + 1) == (name + '=')) {
+        cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+        break;
+      }
+    }
+  }
+  return cookieValue;
+}
+
+
 var data_transmit_enable = 1;
-var begin_fetch_time;
 function transmitToServer(data){
   if(data_transmit_enable == 1){
     data_transmit_enable = 0;
-    begin_fetch_time = Date.now();
     $.ajax({
-      method: "POST",
-      url: "https://bluewyvern.herokuapp.com/arcade/exploding-kacti/add_score/",
+      method: 'POST',
+      headers: {'X-CSRFToken': getCookie('csrftoken')},
+      url: 'add_score/',
       data: data,
       success: function(){
-        const end_fetch_time = Date.now();
-        console.log('Data sent in ', ((end_fetch_time - begin_fetch_time) / 1000) + "s");
         data_transmit_enable = 1;
+      },
+      error: function(xhr, status, err){
+        console.log("Error " + xhr.status);
+        data_transmit_enable = 1;
+      }
+    });
+  }
+}
+
+function getLeaderboardData(){
+  if(data_transmit_enable == 1){
+    data_transmit_enable = 0;
+    document.querySelector("main_menu").classList.add("invisible");
+    hideEndScreen();
+    $.ajax({
+      method: 'GET',
+      headers: {'X-CSRFToken': getCookie('csrftoken')},
+      url: 'add_score/',
+      success: function(data){
+        data_transmit_enable = 1;
+        leaderboard_data = data;
+        leaderboard();
       },
       error: function(xhr, status, err){
         console.log("Error " + xhr.status);

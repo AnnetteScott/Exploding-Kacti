@@ -202,5 +202,12 @@ function pondDamage(pond_health){
     pond_images = 'pond0';
   }
 
-  document.querySelector("pond").style.backgroundImage = "url(Images/ponds/" + pond_images + ".png)";
+  document.querySelector("pond").classList = '';
+  document.querySelector("pond").classList.add(pond_images);
+}
+
+
+
+function between(x, min, max) {
+  return x >= min && x <= max;
 }

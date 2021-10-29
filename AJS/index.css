@@ -9,6 +9,12 @@
   user-select: none;
 }
 
+preload_images{
+  display: none;
+  user-select: none;
+  pointer-events: none;
+}
+
 game{
   position: absolute;
   z-index: 1;
@@ -69,6 +75,11 @@ hittext p{
 }
 
 user_interface{
+  position: absolute;
+  top: var(--ls_nav_height);
+  left: 0px;
+  bottom: 0px;
+  right: 0px;
   user-select: none;
   pointer-events: none;
 }
@@ -107,6 +118,7 @@ health_bar div{
 water_meter p, health_bar p{
   position: absolute;
   bottom: -50px;
+  left: -10px;
   width: 100%;
   color: grey;
   font-size: 20px;
@@ -194,7 +206,7 @@ cactus{
   background-image: url('Images/sprites/weed.png');
 }
 
-.pond{
+pond{
   position: absolute;
   z-index: 1;
   top: -100px;
@@ -206,6 +218,39 @@ cactus{
   background-repeat: no-repeat;
   background-position: center;
   background-size: 100%;
+  user-select: none;
+}
+.pond10{
+  background-image: url('Images/ponds/pond10.png');
+}
+.pond8{
+  background-image: url('Images/ponds/pond8.png');
+}
+.pond6{
+  background-image: url('Images/ponds/pond6.png');
+}
+.pond4{
+  background-image: url('Images/ponds/pond4.png');
+}
+.pond2{
+  background-image: url('Images/ponds/pond2.png');
+}
+.pond0{
+  background-image: url('Images/ponds/pond0.png');
+}
+pond::after{
+  content: "";
+  position: absolute;
+  top: 2px;
+  left: 40px;
+  display: block;
+  width: 40px;
+  height: 40px;
+  background-image: url('Images/player.png');
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: 100%;
+  animation: a_cactus_celebration 0.8s linear infinite;
   user-select: none;
 }
 
@@ -265,6 +310,167 @@ heart{
   background-size: 100%;
   user-select: none;
   pointer-events: all;
+}
+
+
+
+main_menu{
+  position: absolute;
+  z-index: 4;
+  top: 0px;
+  right: 0px;
+  bottom: 0px;
+  left: 0px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  opacity: 1;
+  pointer-events: all;
+  transition: 2s ease all;
+}
+main_menu_inner{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 400px;
+  height: 350px;
+  background-image: url(Images/end_screen_border-2.png);
+  background-repeat: no-repeat;
+  background-size: 100%;
+}
+main_menu_inner h1{
+  justify-self: flex-start;
+  color: black;
+  font-size: 40px;
+  font-family: monospace;
+  letter-spacing: normal;
+}
+main_menu_inner p{
+  color: black;
+  font-size: 20px;
+  font-family: monospace;
+}
+main_menu_inner button{
+  color: black;
+  font-size: 40px;
+  font-family: monospace;
+  font-weight: bold;
+  border: 3px solid black;
+  border-radius: 0px;
+}
+
+
+leaderboard{
+  position: absolute;
+  z-index: 4;
+  top: 0px;
+  right: 0px;
+  bottom: 0px;
+  left: 0px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  opacity: 1;
+  pointer-events: all;
+  transition: 2s ease all;
+}
+leaderboard_inner{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 400px;
+  height: 350px;
+  background-image: url(Images/end_screen_border-2.png);
+  background-repeat: no-repeat;
+  background-size: 100%;
+}
+leaderboard_inner h1{
+  justify-self: flex-start;
+  color: black;
+  font-size: 40px;
+  font-family: monospace;
+  letter-spacing: normal;
+}
+leaderboard_inner ol{
+  margin: 10px 0px 0px 0px;
+}
+leaderboard_inner li{
+  color: black;
+  font-size: 20px;
+  font-family: monospace;
+}
+leaderboard_inner button{
+  color: black;
+  font-size: 20px;
+  font-family: monospace;
+  font-weight: bold;
+  border: 3px solid black;
+  border-radius: 0px;
+}
+
+
+end_screen{
+  position: absolute;
+  z-index: 4;
+  top: 0px;
+  right: 0px;
+  bottom: 0px;
+  left: 0px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  opacity: 1;
+  pointer-events: all;
+  transition: 2s ease all;
+}
+end_screen_inner{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 400px;
+  height: 350px;
+  background-image: url(Images/end_screen_border-2.png);
+  background-repeat: no-repeat;
+  background-size: 100%;
+}
+end_screen_inner h1{
+  justify-self: flex-start;
+  color: black;
+  font-size: 40px;
+  font-family: monospace;
+  letter-spacing: normal;
+}
+end_screen_inner p{
+  color: black;
+  font-size: 20px;
+  font-family: monospace;
+}
+end_screen_inner input[type=text]{
+  color: black;
+  font-size: 26px;
+  font-family: monospace;
+  text-align: center;
+  text-shadow: none;
+}
+end_screen_inner button{
+  color: black;
+  font-size: 20px;
+  font-family: monospace;
+  font-weight: bold;
+  border: 3px solid black;
+  border-radius: 0px;
+}
+
+.invisible{
+  opacity: 0;
+  user-select: none;
+  pointer-events: none;
 }
 
 

@@ -5,9 +5,9 @@ from pygame.constants import MOUSEBUTTONDOWN
 pygame.font.init()
 pygame.init()
 #Function Files
-from settings import constants
-from Engine import functions
-from Engine import routines
+from GAME.Settings import constants
+from GAME.Engine import functions
+from GAME.Engine import routines
 
 
 #Screen and global variables
@@ -25,7 +25,7 @@ pygame.display.set_caption("Exploding Kacti")
 #Draws Background Image
 def draw_background():
 	image_dim = 500
-	BACKGROUND = pygame.image.load('Images/sand_background.png').convert_alpha()
+	BACKGROUND = pygame.image.load('GAME/Images/sand_background.png').convert_alpha()
 	BACKGROUND = pygame.transform.scale(BACKGROUND, (image_dim, image_dim))
 	for y in range(0, SCREEN_HEIGHT, image_dim):
 		for x in range(0, SCREEN_WIDTH, image_dim):
@@ -33,7 +33,7 @@ def draw_background():
 
 #Draws pond in middle of screen
 def draw_pond():
-	POND = pygame.image.load('Images/ponds/pond10.png')
+	POND = pygame.image.load('GAME/Images/ponds/pond10.png')
 	POND = pygame.transform.scale(POND, (POND_DIM, POND_DIM))
 	offsetX = SCREEN_WIDTH / 2 - POND_DIM / 2
 	offsetY = SCREEN_HEIGHT / 2 - POND_DIM / 2

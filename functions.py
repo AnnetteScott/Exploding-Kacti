@@ -22,3 +22,6 @@ def radToDeg(rad):
 def between(x, min, max):
 	a_bool = x >= min and x <= max
 	return a_bool
+
+def checkCollision(obj1, obj2):
+	return (obj1['size'] + obj2['size']) <= getLinearDistance(obj1['pos'], obj2['pos'])

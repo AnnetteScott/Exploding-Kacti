@@ -10,7 +10,7 @@ pygame.display.set_caption("Exploding Kacti")
 #Draws Background Image
 def draw_background():
       image_dim = 500
-      BACKGROUND = pygame.image.load('sand_background.png').convert_alpha()
+      BACKGROUND = pygame.image.load('Images/sand_background.png').convert_alpha()
       BACKGROUND = pygame.transform.scale(BACKGROUND, (image_dim, image_dim))
       for y in range(0, height, image_dim):
             for x in range(0, width, image_dim):

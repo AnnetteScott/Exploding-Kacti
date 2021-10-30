@@ -67,19 +67,23 @@ def draw_health_meter():
 
 def draw_cactus(cacti_object):
 	cacti_type = cacti_object['cacti_type']
-	pos = functions.coordToCenter(cacti_object['pos'], cacti_object['dim']['width'], cacti_object['dim']['height'])
 	cactus = pygame.image.load('GAME/Images/sprites/'+ cacti_type +'.png').convert_alpha()
 	cactus = pygame.transform.scale(cactus, (cactus_items.cacti_dim, cactus_items.cacti_dim))
+	pos = cacti_object['pos']
+	pygame.display.update()
+	
 	SCREEN.blit(cactus, (pos['x'], pos['y']))
+	pygame.display.update()
 
 def check_cacti_num():
 	global cacti_spawn_enable
 	if len(cactus_items.all_cacti.keys()) < cactus_items.max_num_of_cacti and cacti_spawn_enable == 1:
 		cacti_spawn_enable = 0
-		cacti_object = routines.spawnCactus()
+		cacti_object = routines.generateCactus()
 		draw_cactus(cacti_object)
 		pygame.time.delay(cactus_items.cacti_spawn_rate)
 		cacti_spawn_enable = 1
+		
 
 
 
@@ -100,9 +104,8 @@ def click_events():
 #--------------------------------------MAIN GAME------------------------------------#
 #####################################################################################
 #MAIN GAME
-	
-run = True
-while run:
+
+while routines.check_game_over() == False:
 	pygame.time.delay(50)
 	draw_backdrop()
 	draw_water_meter()
@@ -110,15 +113,15 @@ while run:
 	thread1 = Thread(target=check_cacti_num)
 	thread2 = Thread(target=routines.moveAllCacti())
 	thread1.start()
-	#pygame.time.delay(50)
 	thread2.start()
 	
 	for event in pygame.event.get():
 		if event.type == MOUSEBUTTONDOWN:		
 			click_events()
-			run = False
 	
 	pygame.display.update()
+	#routines.gameOver()
+
 
 pygame.quit()
 

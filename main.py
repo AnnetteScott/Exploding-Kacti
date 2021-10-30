@@ -71,6 +71,7 @@ def draw_cactus(cacti_object):
 	cactus = pygame.transform.scale(cactus, (cactus_items.cacti_dim, cactus_items.cacti_dim))
 	pos = cacti_object['pos']
 	pygame.display.update()
+	
 	SCREEN.blit(cactus, (pos['x'], pos['y']))
 	pygame.display.update()
 
@@ -109,7 +110,7 @@ while routines.check_game_over() == False:
 	draw_backdrop()
 	draw_water_meter()
 	draw_health_meter()
-	thread1 = Thread(target=check_cacti_num())
+	thread1 = Thread(target=check_cacti_num)
 	thread2 = Thread(target=routines.moveAllCacti())
 	thread1.start()
 	thread2.start()

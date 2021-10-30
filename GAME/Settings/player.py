@@ -9,5 +9,5 @@ pond_item = {
   'water_amount': 50,
   'pos': constants.SCREEN_CENTER,
   'dim': {'width': constants.POND_DIM, 'height': constants.POND_DIM},
-  'hit_radius': 40
+  'hit_radius': constants.POND_DIM / 2
 }

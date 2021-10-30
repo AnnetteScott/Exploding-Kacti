@@ -84,10 +84,31 @@ def changeWater(modifier):
 	else:
 		current_amount = current_amount + modifier
 
-	#health_bar_elem.style.height = current_amount + "%";
-	#health_bar_text_elem.innerHTML = current_amount + "%";
 	player.pond_item['water_amount'] = current_amount
 	#pondDamage(current_amount)
+
+def check_game_over():
+	a_bool = player.pond_item['pond_health'] <= 0
+	return a_bool
+
+def gameOver():
+	if check_game_over():
+		showEndScreen()
+
+    # pond_elem.classList.add("noafter");
+    # window.clearInterval(anim_intervals['spawn_cacti']);
+    # window.clearInterval(anim_intervals['move_cacti']);
+    # document.querySelectorAll('cactus').forEach((elem) => {
+    #   elem.classList.add("a_cactus_celebration");
+    # });
+    # spawnHitText({x: center_of_game.x - 125, y: center_of_game.y - 100}, '202020', 36, "GAME&nbsp;OVER");
+
+
+
+def showEndScreen():
+	cactus_items.cacti_movement_speed = 0
+	createText('GAME OVER', 40, constants.SCREEN_CENTER['x'], constants.SCREEN_CENTER['y'])
+	#final_score = createText('0000')
 
 
 
@@ -101,7 +122,7 @@ def cactusAttack(cacti_id):
 		del cactus_items.all_cacti[cacti_id]
 		#spawnHitText({x: center_of_game.x - 14, y: center_of_game.y - 100}, 'FF0000', 20, "-10")
 		#explode(center_of_game, 'ff0000')
-		#gameOver()
+		gameOver()
   
 
 def checkPondCollision(cactus_id):

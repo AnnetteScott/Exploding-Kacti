@@ -106,7 +106,7 @@ while run:
 	thread1 = Thread(target=check_cacti_num)
 	thread2 = Thread(target=routines.moveAllCacti())
 	thread1.start()
-	pygame.time.delay(50)
+	#pygame.time.delay(50)
 	thread2.start()
 	
 	for event in pygame.event.get():

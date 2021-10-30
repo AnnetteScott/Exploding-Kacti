@@ -88,7 +88,7 @@ def changeWater(modifier):
 	#pondDamage(current_amount)
 
 def check_game_over():
-	a_bool = player.pond_item['pond_health'] <= 0
+	a_bool = player.player['health'] <= 0
 	return a_bool
 
 def gameOver():

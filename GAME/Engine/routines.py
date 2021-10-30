@@ -37,7 +37,7 @@ def spawnCactus(cacti_type = "normal_cacti"):
 		return cacti_item
 
 def moveAllCacti():
-	for cacti_id in cactus_items.all_cacti.keys():
+	for cacti_id in list(cactus_items.all_cacti.keys()):
 		current_pos = cactus_items.all_cacti[cacti_id]['pos']
 		new_x = 0
 		if current_pos['x'] < constants.SCREEN_CENTER['x']:
@@ -96,10 +96,10 @@ def changeWater(modifier):
 
 def cactusAttack(cacti_id):
 	if checkPondCollision(cacti_id):
-		cactus_items.all_cacti[cacti_id].pop()
+		changeHealth(-10)
+		del cactus_items.all_cacti[cacti_id]
 		#spawnHitText({x: center_of_game.x - 14, y: center_of_game.y - 100}, 'FF0000', 20, "-10")
 		#explode(center_of_game, 'ff0000')
-		functions.changeHealth(-10)
 		#gameOver()
   
 

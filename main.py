@@ -20,6 +20,7 @@ POND_DIM = 128
 SCREEN_CENTER = constants.SCREEN_CENTER
 SCREEN_HEIGHT = constants.SCREEN_HEIGHT
 SCREEN_WIDTH = constants.SCREEN_WIDTH
+cacti_spawn_enable = 1
 pygame.display.set_caption("Exploding Kacti")
 
 #####################################################################################
@@ -72,10 +73,13 @@ def draw_cactus(cacti_object):
 	SCREEN.blit(cactus, (pos['x'], pos['y']))
 
 def check_cacti_num():
-	if len(cactus_items.all_cacti.keys()) < cactus_items.max_num_of_cacti:
+	global cacti_spawn_enable
+	if len(cactus_items.all_cacti.keys()) < cactus_items.max_num_of_cacti and cacti_spawn_enable == 1:
+		cacti_spawn_enable = 0
 		cacti_object = routines.spawnCactus()
-		pygame.time.delay(1000)
 		draw_cactus(cacti_object)
+		pygame.time.delay(1000)
+		cacti_spawn_enable = 1
 
 
 

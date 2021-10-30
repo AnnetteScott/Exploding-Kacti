@@ -27,6 +27,7 @@ def spawnCactus(cacti_type = "normal_cacti"):
 			'id': id,
 			'cacti_type': cacti_type,
 			'pos': pos,
+			'dim': {'width':cactus_items.cacti_dim, 'height':cactus_items.cacti_dim},
 			'total_health': cactus_items.cacti_types[cacti_type]['health'],
 			'remaining_health': cactus_items.cacti_types[cacti_type]['health']
 		}

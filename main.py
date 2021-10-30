@@ -67,7 +67,7 @@ def draw_health_meter():
 
 def draw_cactus(cacti_object):
 	cacti_type = cacti_object['cacti_type']
-	pos = functions.coordToCenter(cacti_object['pos'], cacti_object['dim']['width'], cacti_object['height'])
+	pos = functions.coordToCenter(cacti_object['pos'], cacti_object['dim']['width'], cacti_object['dim']['height'])
 	cactus = pygame.image.load('GAME/Images/sprites/'+ cacti_type +'.png').convert_alpha()
 	cactus = pygame.transform.scale(cactus, (cactus_items.cacti_dim, cactus_items.cacti_dim))
 	SCREEN.blit(cactus, (pos['x'], pos['y']))

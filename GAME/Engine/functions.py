@@ -29,7 +29,8 @@ def between(x, min, max):
 
 
 def checkCollision(obj1, obj2):
-	return (obj1['size'] + obj2['size']) <= getLinearDistance(obj1['pos'], obj2['pos'])
+	return getLinearDistance(obj1['pos'], obj2['pos']) <= (obj1['hit_radius'] + obj2['hit_radius'])
+
 
 #pass width and height of the object and the x and y coordintes of it's center
 def checkObjectClick(width, height, x, y):

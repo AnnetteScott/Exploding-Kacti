@@ -1,7 +1,9 @@
 cacti_movement_speed = 1
+cacti_spawn_rate = 1000
 cacti_min_spawn_distance = 400
 max_num_of_cacti = 10
 all_cacti = {}
+cacti_dim = 64
 cacti_types = {
   "normal_cacti": {
     'spawn_chance': 60,

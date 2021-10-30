@@ -56,3 +56,10 @@ def getPosAlongHypo(pos1, pos2, x):
   y = (((d-b)/(c-a)) * x) + (((b * c) - (a * d))/(c - a))
   return y
 
+
+def coordToCenter(pos, width, height):
+	return {'x': pos['x'] + (width / 2), 'y': pos['y'] + (height / 2)}
+
+
+def centerToCoord(pos, width, height):
+	return {'x': pos['x'] - (width / 2), 'y': pos['y'] - (height / 2)}

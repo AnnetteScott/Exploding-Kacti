@@ -28,6 +28,7 @@ def spawnCactus(cacti_type = "normal_cacti"):
 			'cacti_type': cacti_type,
 			'pos': pos,
 			'dim': {'width': cactus_items.cacti_dim, 'height': cactus_items.cacti_dim},
+			'hit_radius': cactus_items.cacti_dim / 2,
 			'total_health': cactus_items.cacti_types[cacti_type]['health'],
 			'remaining_health': cactus_items.cacti_types[cacti_type]['health']
 		}
@@ -117,19 +118,9 @@ def showEndScreen():
 #####################################################################################
 
 def cactusAttack(cacti_id):
-	if checkPondCollision(cacti_id):
+	if functions.checkCollision(cactus_items.all_cacti[cacti_id], player.pond_item):
 		changeHealth(-10)
 		del cactus_items.all_cacti[cacti_id]
 		#spawnHitText({x: center_of_game.x - 14, y: center_of_game.y - 100}, 'FF0000', 20, "-10")
 		#explode(center_of_game, 'ff0000')
 		gameOver()
-  
-
-def checkPondCollision(cactus_id):
-	if functions.getLinearDistance(constants.SCREEN_CENTER, cactus_items.all_cacti[cactus_id]['pos']) <= player.pond_item['pond_hit_distance']:
-		return True
-	else:
-		return False
-
-
-	

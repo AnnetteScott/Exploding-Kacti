@@ -32,7 +32,7 @@ def generateCactus(cacti_type = "normal_cacti"):
 			'total_health': cactus_items.cacti_types[cacti_type]['health'],
 			'remaining_health': cactus_items.cacti_types[cacti_type]['health']
 		}
-		new_cactus_object['pos'] = pos = functions.coordToCenter(new_cactus_object['pos'], new_cactus_object['dim']['width'], new_cactus_object['dim']['height'])
+		new_cactus_object['pos'] = functions.coordToCenter(new_cactus_object['pos'], new_cactus_object['dim']['width'], new_cactus_object['dim']['height'])
 		cactus_items.all_cacti[id] = new_cactus_object
 
 		cacti_item = new_cactus_object
@@ -53,6 +53,7 @@ def moveAllCacti():
 
 		cactus = pygame.image.load('GAME/Images/sprites/'+ cactus_items.all_cacti[cacti_id]['cacti_type'] +'.png').convert_alpha()
 		cactus = pygame.transform.scale(cactus, (cactus_items.cacti_dim, cactus_items.cacti_dim))
+		pygame.draw.circle(constants.SCREEN, (0, 0, 0), (new_pos['x'], new_pos['y']), cactus_items.all_cacti[cacti_id]['hit_radius'], 3)
 		constants.SCREEN.blit(cactus, (new_pos['x'], new_pos['y']))
 
 		cactusAttack(cacti_id)

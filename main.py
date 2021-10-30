@@ -26,7 +26,7 @@ pygame.display.set_caption("Exploding Kacti")
 #####################################################################################
 #-----------------------------------Draws the Game----------------------------------#
 #####################################################################################
-def draw_backdrop():
+def draw_game():
 	#Draws Background Image
 	image_dim = 500
 	BACKGROUND = pygame.image.load('GAME/Images/sand_background.png').convert_alpha()
@@ -42,7 +42,7 @@ def draw_backdrop():
 	pond_offsetY = SCREEN_HEIGHT / 2 - POND_DIM / 2
 	SCREEN.blit(POND, (pond_offsetX, pond_offsetY))
 
-def draw_water_meter():
+	#Draws water meter
 	bar_height = 15
 	bar_width =  POND_DIM * (player.pond_item['water_amount'] / 100)
 	barX = SCREEN_CENTER['x'] - POND_DIM / 2 
@@ -52,7 +52,7 @@ def draw_water_meter():
 	pygame.draw.rect(SCREEN, (0, 0, 0), (barX, barY, POND_DIM, bar_height), 3) #Outline
 	routines.createText('Water', 15, barX + POND_DIM / 2 - 21, barY - 1) #Text
 	
-def draw_health_meter():
+	#Draws health meter
 	bar_height = 15
 	bar_width = POND_DIM * (player.player['health'] / 100)
 	barX = SCREEN_CENTER['x'] - POND_DIM / 2 
@@ -65,27 +65,15 @@ def draw_health_meter():
 #----------------------------------------Cacti--------------------------------------#
 #####################################################################################
 
-def draw_cactus(cacti_object):
-	cacti_type = cacti_object['cacti_type']
-	cactus = pygame.image.load('GAME/Images/sprites/'+ cacti_type +'.png').convert_alpha()
-	cactus = pygame.transform.scale(cactus, (cactus_items.cacti_dim, cactus_items.cacti_dim))
-	pos = cacti_object['pos']
-	pygame.display.update()
-	
-	SCREEN.blit(cactus, (pos['x'], pos['y']))
-	pygame.display.update()
-
-def check_cacti_num():
+def spawn_cacti():
 	global cacti_spawn_enable
 	if len(cactus_items.all_cacti.keys()) < cactus_items.max_num_of_cacti and cacti_spawn_enable == 1:
 		cacti_spawn_enable = 0
 		cacti_object = routines.generateCactus()
-		draw_cactus(cacti_object)
+		routines.draw_cactus(cacti_object)
 		pygame.time.delay(cactus_items.cacti_spawn_rate)
 		cacti_spawn_enable = 1
 		
-
-
 
 #####################################################################################
 #------------------------------------Click Events-----------------------------------#
@@ -94,8 +82,6 @@ def check_cacti_num():
 def click_events():
 	if functions.checkObjectClick(POND_DIM, POND_DIM, SCREEN_CENTER['x'], SCREEN_CENTER['y']):
 		routines.changeWater(50)
-		draw_water_meter()
-		pygame.display.update()
 		
 
 
@@ -107,10 +93,8 @@ def click_events():
 
 while routines.check_game_over() == False:
 	pygame.time.delay(50)
-	draw_backdrop()
-	draw_water_meter()
-	draw_health_meter()
-	thread1 = Thread(target=check_cacti_num)
+	draw_game()
+	thread1 = Thread(target=spawn_cacti)
 	thread2 = Thread(target=routines.moveAllCacti())
 	thread1.start()
 	thread2.start()

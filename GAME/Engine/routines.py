@@ -53,8 +53,12 @@ def moveAllCacti():
 		cactus = pygame.transform.scale(cactus, (cactus_items.cacti_dim, cactus_items.cacti_dim))
 		constants.SCREEN.blit(cactus, (new_pos['x'], new_pos['y']))
 
-	#cactusAttack(cacti_id)
+		cactusAttack(cacti_id)
 
+
+#####################################################################################
+#------------------------------------Game Play--------------------------------------#
+#####################################################################################
 
 def changeHealth(modifier):
 	current_amount = player.player['health']

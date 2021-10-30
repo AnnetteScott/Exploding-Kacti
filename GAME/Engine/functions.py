@@ -1,6 +1,7 @@
 import math
 import random
 import pygame
+from ..Settings import player
 
 def zeropad(string, length):
 	string = str(string)
@@ -45,3 +46,13 @@ def generateID():
 	for index in range(10):
 		id += char_pool[random.randrange(0, len(char_pool))]
 	return id
+
+
+def getPosAlongHypo(pos1, pos2, x):
+  a = pos1['x']
+  b = pos1['y']
+  c = pos2['x']
+  d = pos2['y']  
+  y = (((d-b)/(c-a)) * x) + (((b * c) - (a * d))/(c - a))
+  return y
+

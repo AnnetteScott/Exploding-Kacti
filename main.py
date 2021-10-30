@@ -2,7 +2,7 @@
 import pygame
 from pygame import image
 from threading import Thread
-from pygame.constants import MOUSEBUTTONDOWN
+from pygame.constants import K_ESCAPE, KEYDOWN, MOUSEBUTTONDOWN
 pygame.font.init()
 pygame.init()
 #Function Files
@@ -26,7 +26,7 @@ pygame.display.set_caption("Exploding Kacti")
 #####################################################################################
 #-----------------------------------Draws the Game----------------------------------#
 #####################################################################################
-def draw_game():
+def draw_background():
 	#Draws Background Image
 	image_dim = 500
 	BACKGROUND = pygame.image.load('GAME/Images/sand_background.png').convert_alpha()
@@ -35,6 +35,7 @@ def draw_game():
 		for x in range(0, SCREEN_WIDTH, image_dim):
 			SCREEN.blit(BACKGROUND, (x, y))
 
+def draw_game():
 	#Draws pond in middle of screen
 	POND = pygame.image.load('GAME/Images/ponds/pond10.png')
 	POND = pygame.transform.scale(POND, (POND_DIM, POND_DIM))
@@ -91,22 +92,39 @@ def click_events():
 #####################################################################################
 #MAIN GAME
 
-while routines.check_game_over() == False:
-	pygame.time.delay(50)
-	draw_game()
-	thread1 = Thread(target=spawn_cacti)
-	thread2 = Thread(target=routines.moveAllCacti())
-	thread1.start()
-	thread2.start()
-	
-	for event in pygame.event.get():
-		if event.type == MOUSEBUTTONDOWN:		
-			click_events()
-	
-	pygame.display.update()
-	#routines.gameOver()
+def main_menu():
+	while True:
+		draw_background()
+		play_button = pygame.Rect(50, 100, 200, 50)
+		pygame.draw.rect(SCREEN, (255, 0, 0), play_button)
+		mx, my = pygame.mouse.get_pos()
+		if play_button.collidepoint((mx, my)):
+			game_play()
+		for event in pygame.event.get():
+			if event.type == KEYDOWN:
+				if event.key == K_ESCAPE:
+						pygame.quit()
+		pygame.display.update()
 
 
-pygame.quit()
+def game_play():
+	while routines.check_game_over() == False:
+		pygame.time.delay(50)
+		draw_background()
+		draw_game()
+		thread1 = Thread(target=spawn_cacti)
+		thread2 = Thread(target=routines.moveAllCacti())
+		thread1.start()
+		thread2.start()
+		
+		for event in pygame.event.get():
+			if event.type == MOUSEBUTTONDOWN:		
+				click_events()
+			elif event.type == KEYDOWN:
+				if event.key == K_ESCAPE:
+						pygame.quit()
+		
+		pygame.display.update()
+		#routines.gameOver()
 
-
+main_menu()

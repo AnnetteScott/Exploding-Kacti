@@ -78,7 +78,7 @@ def check_cacti_num():
 		cacti_spawn_enable = 0
 		cacti_object = routines.spawnCactus()
 		draw_cactus(cacti_object)
-		pygame.time.delay(1000)
+		pygame.time.delay(cactus_items.cacti_spawn_rate)
 		cacti_spawn_enable = 1
 
 

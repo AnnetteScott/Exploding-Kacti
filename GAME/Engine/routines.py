@@ -15,7 +15,7 @@ def createText(text, font_size, x, y):
 	textsurface = myfont.render(text, False, (0, 0, 0))
 	constants.SCREEN.blit(textsurface,(x,y))
 
-def spawnCactus(cacti_type = "normal_cacti"):
+def generateCactus(cacti_type = "normal_cacti"):
 	if len(cactus_items.all_cacti.keys()) < cactus_items.max_num_of_cacti:
 		pos = {'x': constants.SCREEN_CENTER['x'], 'y': constants.SCREEN_CENTER['y']}
 
@@ -32,7 +32,7 @@ def spawnCactus(cacti_type = "normal_cacti"):
 			'total_health': cactus_items.cacti_types[cacti_type]['health'],
 			'remaining_health': cactus_items.cacti_types[cacti_type]['health']
 		}
-
+		new_cactus_object['pos'] = pos = functions.coordToCenter(new_cactus_object['pos'], new_cactus_object['dim']['width'], new_cactus_object['dim']['height'])
 		cactus_items.all_cacti[id] = new_cactus_object
 
 		cacti_item = new_cactus_object
